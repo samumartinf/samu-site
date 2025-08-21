@@ -1,12 +1,14 @@
 This project was the result of my Master's thesis. It provides a framework for model identification in analytical form. It uses statistical methods for estimating the ODE system. By the end, it provides the user with a fully human understandable ODE describing the system.
 
+**📖 [Read the full thesis here](/assets/SBL.pdf)**
+
 # Project Overview
 
 In the realms of engineering and biology, understanding complex systems through nonlinear system identification is crucial. Traditional methods often falter, especially when data is scarce or hard to gather—a frequent challenge in biological research. Recognizing the need for a method that works in such constrained scenarios and yields results that researchers can easily interpret, our latest project introduces an innovative two-step approach. Initially, we enhance noisy data through a novel derivative estimation technique using Gaussian Processes. Following this, Sparse Bayesian Learning aids in identifying significant features, enabling the discovery of the system's analytical representation. Our method culminates in the formulation of Ordinary Differential Equations (ODEs), offering a clear, understandable model of the system dynamics. This tool not only simplifies the analysis of crucial system properties like stability but also marks a step forward in making complex system identification more accessible and interpretable for researchers.
 
-# The code
+# The Code
 
-This is an example on how to use the Python package to estimate ODE systems from data. The code is available in the [Github Repository](https://github.com/samumartinf/ode_composer_py)
+This is an example of how to use the Python package to estimate ODE systems from data. The code is available in the [Github Repository](https://github.com/samumartinf/ode_composer_py)
 
 ```python
 from ode_composer.statespace_model import StateSpaceModel
@@ -24,9 +26,9 @@ from ode_composer.signal_preprocessor import (
 )
 ```
 
-# Intro
+# Introduction
 
-In this sample we use a [Lota-Volterra](https://en.wikipedia.org/wiki/Lotka–Volterra_equations) model. We will show how to generate the State Space model, generate measurements using the MeasumrenetsGenerator and finally show the workflow for preprocessing the singals and generating the analytical results.
+In this sample, we use a [Lotka-Volterra](https://en.wikipedia.org/wiki/Lotka–Volterra_equations) model. We will show how to generate the State Space model, generate measurements using the MeasurementsGenerator, and finally demonstrate the workflow for preprocessing the signals and generating the analytical results.
 
 ```python
 # Define the Lotka-Volterra model and generate the StateSpaceModel object
@@ -73,17 +75,17 @@ plt.plot(t, y.T, label=["x1_measured", "x2_measured"])
 plt.plot(t_orig, y_orig.T, "--", label=["x1", "x2"])
 plt.xlabel("Time")
 plt.ylabel("State")
-plt.title("Orginal Lotka-Volterra Model and Measurements")
+plt.title("Original Lotka-Volterra Model and Measurements")
 plt.legend()
 plt.show()
 
 ```
 
-![png](/assets/images/sbl/Intro_4_0.png)
+![Lotka-Volterra Model and Measurements](/images/sbl/Intro_4_0.png)
 
-## Singal preprocessing
+## Signal Preprocessing
 
-As mentioned, the package also provides the ability to Preprocess the signal. The SBL algorithm will adjust the sparsity penalty based on the noise of the signal. We can use Gaussian Processes to estimate the noise of a signal after optimising a Kernel over our data. Additionally, GP's mean can provide a great starting point for calculating the time derivative of noisiy singals.
+As mentioned, the package also provides the ability to preprocess the signal. The SBL algorithm will adjust the sparsity penalty based on the noise of the signal. We can use Gaussian Processes to estimate the noise of a signal after optimizing a Kernel over our data. Additionally, GP's mean can provide a great starting point for calculating the time derivative of noisy signals.
 
 ```python
 # Preprocess the data using the GPSignalPreprocessor and the RBF kernel
@@ -111,7 +113,7 @@ print(time.time() - start_time)
 ```python
 # You can also find out which are the possible kernels to use
 print("Available kernels:")
-print(gproc.get_avaialble_kernels())
+print(gproc.get_available_kernels())
 ```
 
     Available kernels:
@@ -159,21 +161,21 @@ plt.plot(t_orig, dydt_orig_2[0, :], label='dydt_2 original')
 plt.xlabel('t_gp')
 plt.ylabel('Derivatives')
 plt.legend()
-plt.title('Derivatives vs Estimations for first state')
+plt.title('Derivatives vs Estimations for second state')
 
 plt.show()
 
 ```
 
-![png](/assets/images/sbl/Intro_8_0.png)
+![Original vs Preprocessed Data](/images/sbl/Intro_8_0.png)
 
-![png](/assets/images/sbl/Intro_8_1.png)
+![Derivatives vs Estimations for First State](/images/sbl/Intro_8_1.png)
 
-![png](/assets/images/sbl/Intro_8_2.png)
+![Derivatives vs Estimations for Second State](/images/sbl/Intro_8_2.png)
 
 ## Observations
 
-As we can see the choice of kernel can
+As we can see, the choice of kernel can significantly impact the quality of the derivative estimation. The RBF kernel provides smooth estimates that closely match the original derivatives, demonstrating the effectiveness of our preprocessing approach.
 
 ```python
 spline_1 = SplineSignalPreprocessor(t, y[0,:])
@@ -303,15 +305,19 @@ plt.ylabel('Population')
 plt.show()
 ```
 
-![png](/assets/images/sbl/Intro_12_0.png)
-
+![Model Comparison Results](/images/sbl/Intro_12_0.png)
 
 # Conclusion
 
-As we can see, the SBL algorithm can be an optiomal way of estimating the parameters of a model. The package provides a simple way of generating the State Space model, generating measurements and preprocessing the signals.
-The generated ODE model is found below, which correctly estimate the structure of the Lotka-Volterra model.
-```math
-$$ \frac{dx_1}{dt} = 0.463x_1 - 1.01x_1x_2 $$
+As we can see, the SBL algorithm can be an optimal way of estimating the parameters of a model. The package provides a simple way of generating the State Space model, generating measurements, and preprocessing the signals.
 
-$$ \frac{dx_2}{dt} = 1.54x_1x_2 - 0.759x_2 $$
+The generated ODE model is found below, which correctly estimates the structure of the Lotka-Volterra model:
+```math
+\frac{dx_1}{dt} = 0.463x_1 - 1.01x_1x_2
 ```
+
+```math
+\frac{dx_2}{dt} = 1.54x_1x_2 - 0.759x_2
+```
+
+This demonstrates the effectiveness of our approach in recovering the underlying system dynamics from noisy, limited data. The method successfully identifies the key interaction terms (x₁x₂) and provides parameter estimates that closely match the true system behavior.
