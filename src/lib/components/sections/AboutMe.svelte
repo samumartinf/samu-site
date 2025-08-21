@@ -32,15 +32,15 @@
 		<div class="grid md:grid-cols-2 gap-12 items-center mb-20">
 			<div class="space-y-6 order-2 md:order-1">
 				<p class="text-lg text-muted-foreground leading-relaxed">
-					Hi! I'm someone who gets unreasonably excited about <span class="text-primary font-semibold">mathematical models</span>, 
-					<span class="text-primary font-semibold">weird biology facts</span>, and making computers go <em>really</em> fast. 
+					Hi! I'm someone who gets unreasonably excited about making <span class="text-primary font-semibold">computers go brrr</span>, 
+					<span class="text-primary font-semibold">mathematics</span>, and <span class="text-primary font-semibold">biology</span>. 
 					My curiosity tends to drag me down rabbit holes that somehow always end up being useful later 🤷‍♂️
 				</p>
 				
 				<p class="text-lg text-muted-foreground leading-relaxed">
-					I studied <span class="text-primary font-semibold">Biomedical Engineering at Imperial</span> (yes, I'm one of those people who thought "why not combine engineering with human bodies?"). 
-					These days I work in <span class="text-primary font-semibold">finance</span> building trading systems that move money around faster than I can spend it. 
-					The irony is not lost on me.
+					I studied <span class="text-primary font-semibold">Biomedical Engineering at Imperial</span> both bacherlor and master's degree. 
+					These days I work in <span class="text-primary font-semibold">finance</span> (yes, I ended up in the bermuda triangle of talent regardless)
+					 building portfolio management systems, trading systems, and other financial tools.
 				</p>
 				
 				<p class="text-lg text-muted-foreground leading-relaxed">
@@ -48,10 +48,6 @@
 					<span class="text-primary font-semibold">Rust</span>, automating with <span class="text-primary font-semibold">Python</span>, 
 					and building sites like this one in <span class="text-primary font-semibold">SvelteKit</span>. 
 					I'm perpetually curious about new tech, always have a book on the go, and probably know way too much about completely random topics.
-				</p>
-
-				<p class="text-lg text-muted-foreground leading-relaxed">
-					I am a decent cook too, so please to send me any goo recipes.
 				</p>
 			</div>
 			

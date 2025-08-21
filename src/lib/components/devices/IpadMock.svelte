@@ -82,30 +82,30 @@
 	{#if orientation === 'portrait'}
 		<!-- Portrait iPad -->
 		<div class="relative">
-			<div class="h-[520px] w-[400px] rounded-[2rem] bg-black p-3 shadow-2xl">
-				<div class="h-full w-full overflow-hidden rounded-[1.5rem] bg-gray-900">
+			<div class="h-[670px] w-[480px] rounded-[2rem] bg-black p-3 shadow-2xl">
+				<div class="h-full w-full overflow-hidden rounded-[1.5rem] bg-gray-900 flex items-center justify-center">
 					<img
 						src={image()}
 						alt="Paced on iPad - {view === 'task' ? 'Task Management' : 'Habit Tracking'}"
-						class="h-full w-full object-top"
+						class="h-full w-full object-contain"
 					/>
 				</div>
 			</div>
 			<div
 				class="absolute -bottom-4 left-1/2 -translate-x-1/2 translate-y-1/2 transform text-lg text-gray-500 dark:text-gray-400"
 			>
-                {message}
+				{message}
 			</div>
 		</div>
 	{:else}
 		<!-- Landscape iPad -->
 		<div class="relative">
-			<div class="h-[400px] w-[520px] rounded-[2rem] bg-black p-3 shadow-2xl">
-				<div class="h-full w-full overflow-hidden rounded-[1.5rem] bg-gray-900">
+			<div class="h-[480px] w-[670px] rounded-[1.5rem] bg-black p-3 shadow-2xl">
+				<div class="h-full w-full overflow-hidden rounded-[1.5rem] bg-gray-900 flex items-center justify-center">
 					<img
 						src={image()}
 						alt="Paced on iPad - {view === 'task' ? 'Task Management' : 'Habit Tracking'}"
-						class="h-full w-full object-cover object-top"
+						class="h-full w-full object-contain"
 					/>
 				</div>
 			</div>

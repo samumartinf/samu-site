@@ -1,0 +1,53 @@
+---
+title: "LosingAlpha: Trading Dashboard That Doesn't Lose Your Money (Hopefully)"
+description: "A fully customizable trading dashboard built with SvelteKit and AG Grid for real-time financial data visualization"
+image: "/images/losingalpha/hero-dashboard.png"
+tags: ["SvelteKit", "AG Grid", "Financial", "Dashboard", "Widgets"]
+---
+
+# {title}
+
+Ever tried to track your trades and ended up more confused than a cat in a room full of laser pointers? Yeah, me too. That's why I built LosingAlpha - a trading dashboard that actually makes sense (and hopefully helps you not lose money).
+
+**[🚀 Try LosingAlpha →](https://play-svelte.vercel.app/mainDashboard)**
+
+![LosingAlpha Dashboard](/images/losingalpha/hero-dashboard.png)
+
+## 🎯 What It Does
+
+LosingAlpha is a fully customizable trading dashboard that gives you the financial data you need without the headache. Think of it as your personal financial command center - but without the stress of actually trading (that's on you, buddy).
+image.png
+- **Customizable Reports**: P&L, Positions, Trades - you name it, you can build it
+- **Widget-Based Dashboard**: Drag, drop, and arrange widgets like you're playing financial Tetris
+- **Real-Time Data**: Live risk and P&L updates (because waiting is so 2020)
+- **User-Friendly**: So easy your grandma could use it (if she was into day trading)
+
+## 🛠️ Tech Stack
+
+- **SvelteKit**: Because vanilla Svelte is so last year
+- **AG Grid**: The Swiss Army knife of data grids
+- **Widgets**: Because who doesn't love building blocks?
+- **Real-Time Updates**: Because stale data is like stale bread - nobody wants it
+
+## 🚧 The Fun Part
+
+Building this was like trying to teach a robot to dance - technically possible, but hilariously complex. The main challenge was making AG Grid play nice with SvelteKit while keeping everything customizable. 
+
+Widgets were the real MVP here. Users can create reports, build dashboards, and arrange everything just the way they like. It's like giving everyone their own personal Bloomberg terminal, but without the $24,000/year price tag.
+
+## 🎉 Why It's Cool
+
+- **No More Excel Hell**: Say goodbye to manually updating spreadsheets
+- **Real-Time Everything**: Live data updates without refreshing (because who has time for that?)
+- **Customizable AF**: Make it look exactly how you want it
+- **Actually Works**: Unlike some trading platforms that crash when you need them most
+
+## 🚀 Try It Yourself
+
+Look, I could tell you all about the technical implementation, but honestly? Just go play with it. It's way more fun to use than to read about.
+
+**[🎮 Play with LosingAlpha →](https://play-svelte.vercel.app/mainDashboard)**
+
+---
+
+*P.S. The name "LosingAlpha" is a joke. Please don't actually lose money trading. That's not cool.*

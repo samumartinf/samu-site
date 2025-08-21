@@ -5,33 +5,28 @@ export interface PortfolioItem {
 	tags: string[];
 	slug: string;
 	href: string;
+	externalUrl?: string;
 }
 
 // Static portfolio data that matches our markdown files
 export const portfolioItems: PortfolioItem[] = [
 	{
-		title: "Animal Inspired Robotics",
-		description: "Interactive simulation for BIOE97156. Target interception algorithms and real-world robot implementation with computer vision and obstacle avoidance.",
-		image: "/images/robotSimulation/banner_animal_robotics.jpeg",
-		tags: ["Python", "Computer Vision", "Robotics"],
-		slug: "animal-robotics",
-		href: "/portfolio/animal-robotics"
+		title: "LosingAlpha: Trading Dashboard",
+		description: "A fully customizable trading dashboard built with SvelteKit and AG Grid for real-time financial data visualization",
+		image: "/images/losingalpha/hero-dashboard.png",
+		tags: ["SvelteKit", "AG Grid", "Financial", "Dashboard"],
+		slug: "losingalpha",
+		href: "/portfolio/losingalpha",
+		externalUrl: "https://play-svelte.vercel.app/mainDashboard"
 	},
 	{
-		title: "Smart Baby Buggy",
-		description: "Engineering solution for visually impaired parents using LIDAR, ultrasound sensors, and haptic feedback to navigate urban environments safely.",
-		image: "/images/babyBuggy/i_explain_stuff.png",
-		tags: ["LIDAR", "Machine Learning", "Accessibility"],
-		slug: "smart-baby-buggy",
-		href: "/portfolio/smart-baby-buggy"
-	},
-	{
-		title: "ODE Composer",
-		description: "Best M.Eng. Thesis winner: Framework for ODE system identification using Sparse Bayesian Learning and Gaussian Processes for derivative estimation.",
-		image: "/images/sbl/WideScreen_GP.jpg",
-		tags: ["Python", "Bayesian Learning", "Research"],
-		slug: "sparse-bayesian-learning",
-		href: "/portfolio/sparse-bayesian-learning"
+		title: "Paced: Habit Tracker",
+		description: "Full-stack habit tracker and task manager combining behavioral science with modern web tech to help build better habits.",
+		image: "/images/paced/paced-hero.png",
+		tags: ["Svelte 5", "TypeScript", "PostgreSQL", "PWA"],
+		slug: "paced",
+		href: "/portfolio/paced",
+		externalUrl: "https://paced.app"
 	},
 	{
 		title: "Taures Chess Engine",
@@ -42,12 +37,28 @@ export const portfolioItems: PortfolioItem[] = [
 		href: "/portfolio/taures-chess"
 	},
 	{
-		title: "Paced: Habit Tracker",
-		description: "Full-stack habit tracker and task manager combining behavioral science with modern web tech to help build better habits.",
-		image: "/images/paced/paced-hero.png",
-		tags: ["Svelte 5", "TypeScript", "PostgreSQL", "PWA"],
-		slug: "paced",
-		href: "/portfolio/paced"
+		title: "ODE Composer",
+		description: "Best M.Eng. Thesis winner: Framework for ODE system identification using Sparse Bayesian Learning and Gaussian Processes for derivative estimation.",
+		image: "/images/sbl/WideScreen_GP.jpg",
+		tags: ["Python", "Bayesian Learning", "Research"],
+		slug: "sparse-bayesian-learning",
+		href: "/portfolio/sparse-bayesian-learning"
+	},
+	{
+		title: "Smart Baby Buggy",
+		description: "Engineering solution for visually impaired parents using LIDAR, ultrasound sensors, and haptic feedback to navigate urban environments safely.",
+		image: "/images/babyBuggy/i_explain_stuff.png",
+		tags: ["LIDAR", "Machine Learning", "Accessibility"],
+		slug: "smart-baby-buggy",
+		href: "/portfolio/smart-baby-buggy"
+	},
+	{
+		title: "Animal Inspired Robotics",
+		description: "Interactive simulation for BIOE97156. Target interception algorithms and real-world robot implementation with computer vision and obstacle avoidance.",
+		image: "/images/robotSimulation/banner_animal_robotics.jpeg",
+		tags: ["Python", "Computer Vision", "Robotics"],
+		slug: "animal-robotics",
+		href: "/portfolio/animal-robotics"
 	}
 ];
 

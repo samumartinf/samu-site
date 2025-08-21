@@ -66,12 +66,12 @@
 					<!-- Notch - smaller and more realistic -->
 					<div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-4 bg-black rounded-b-lg z-10"></div>
 					
-					<!-- Screen image with margins to prevent cropping -->
-					<div class="w-full h-full rounded-lg overflow-hidden mb-3 bg-background">
+					<!-- Screen image with proper centering -->
+					<div class="w-full h-full rounded-lg overflow-hidden bg-background flex items-center justify-center">
 						<img 
 							src={image()}
 							alt="Paced on MacBook - {props.view === 'task' ? 'Task Management' : 'Habit Tracking'}"
-							class="w-full h-full object-fit rounded-md pb-2"
+							class="w-full h-full object-contain rounded-md"
 						/>
 					</div>
 				</div>

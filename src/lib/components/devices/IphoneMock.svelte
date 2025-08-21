@@ -64,12 +64,12 @@
 <!-- iPhone mockup -->
 <div class="flex justify-center lg:justify-end">
 	<div class="relative">
-		<div class="h-[520px] w-64 rounded-[3rem] bg-black p-2 shadow-2xl">
-			<div class="h-full w-full overflow-hidden rounded-[2.5rem] bg-background">
+		<div class="h-[600px] w-72 rounded-[3rem] bg-black p-2 shadow-2xl">
+			<div class="h-full w-full overflow-hidden rounded-[2.5rem] bg-background flex items-center justify-center">
 				<img
 					src={image()}
 					alt="Paced on iPhone - {props.view === 'task' ? 'Task Management' : 'Habit Tracking'}"
-					class="h-full w-full object-cover object-top p-2"
+					class="h-full w-full object-contain"
 				/>
 			</div>
 		</div>

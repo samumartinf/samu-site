@@ -26,11 +26,13 @@
 			{#each displayItems as item}
 				<article class="bg-card border rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
 					<div class="relative h-48 overflow-hidden">
-						<img 
-							src={item.image}
-							alt={item.title}
-							class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-						/>
+						<a href={item.href} class="block w-full h-full">
+							<img 
+								src={item.image}
+								alt={item.title}
+								class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 cursor-pointer"
+							/>
+						</a>
 					</div>
 					<div class="p-6">
 						<h3 class="text-xl font-bold mb-3 text-card-foreground group-hover:text-primary transition-colors">
@@ -44,9 +46,21 @@
 								<span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">{tag}</span>
 							{/each}
 						</div>
-						<a href={item.href} class="inline-flex items-center text-primary hover:text-accent transition-colors">
-							Read More →
-						</a>
+						<div class="flex items-center justify-between">
+							<a href={item.href} class="inline-flex items-center text-primary hover:text-accent transition-colors">
+								Read More →
+							</a>
+							{#if item.externalUrl}
+								<a 
+									href={item.externalUrl} 
+									target="_blank" 
+									rel="noopener noreferrer"
+									class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-sm rounded-lg hover:bg-primary/90 transition-colors"
+								>
+									🚀 Try Out
+								</a>
+							{/if}
+						</div>
 					</div>
 				</article>
 			{/each}

@@ -54,19 +54,19 @@
         
         <!-- Desktop/Tablet: Overlapping style -->
         {#if mounted}
-            <div class="hidden md:block relative h-[600px] max-w-5xl mx-auto">
+            <div class="hidden md:block relative h-[800px] max-w-6xl mx-auto">
                 <!-- MacBook mockup - Background layer (flies in from top) -->
-                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 z-10" in:fly={{ y: -100, duration: 1000, delay: 200 }}>
+                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 z-10 scale-110" in:fly={{ y: -100, duration: 1000, delay: 200 }}>
                     <MacbookMock view="task" message="Mac" />
                 </div>
 
                 <!-- iPad mockup - Left overlap (flies in from left) -->
-                <div class="absolute top-16 left-8 z-20 transform rotate-[-8deg] scale-75" in:fly={{ x: -100, duration: 1000, delay: 400 }}>
+                <div class="absolute top-20 -left-14 z-20 transform rotate-[-12deg] scale-[0.65]" in:fly={{ x: -100, duration: 1000, delay: 400 }}>
                     <IpadMock view="habit" orientation="portrait" kanban={false} message="iPad" />
                 </div>
 
                 <!-- iPhone mockup - Right overlap (flies in from right) -->
-                <div class="absolute top-24 right-12 z-30 transform rotate-[12deg] scale-75" in:fly={{ x: 100, duration: 1000, delay: 600 }}>
+                <div class="absolute top-28 right-4 z-30 transform rotate-[12deg] scale-[0.65]" in:fly={{ x: 100, duration: 1000, delay: 600 }}>
                     <IphoneMock view="task" message="iPhone" />
                 </div>
             </div>
@@ -76,17 +76,17 @@
         {#if mounted}
             <div class="md:hidden space-y-12" in:fly={{ y: 100, duration: 1000, delay: 400 }}>
                 <!-- iPhone mockup - Featured on mobile -->
-                <div class="scale-75">
+                <div class="scale-[0.65]">
                     <IphoneMock view="task" message="iPhone" />
                 </div>
 
                 <!-- iPad mockup - Secondary -->
-                <div class="scale-75">
+                <div class="scale-[0.65]">
                     <IpadMock view="habit" orientation="portrait" kanban={false} message="iPad" />
                 </div>
 
                 <!-- MacBook mockup - Simplified for mobile -->
-                <div class="scale-75">
+                <div class="scale-[0.65]">
                     <MacbookMock view="task" message="Mac" />
                 </div>
             </div>
