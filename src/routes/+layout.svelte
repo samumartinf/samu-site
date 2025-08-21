@@ -2,7 +2,7 @@
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import { ModeWatcher } from 'mode-watcher';
-	import DarkModeSelector from '$lib/components/ui/DarkModeSelector.svelte';
+	import Navigation from '$lib/components/Navigation.svelte';
 	
 	let { children } = $props();
 </script>
@@ -12,5 +12,6 @@
 </svelte:head>
 
 <ModeWatcher />
-<DarkModeSelector />
+<Navigation />
+
 {@render children?.()}
