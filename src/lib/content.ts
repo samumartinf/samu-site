@@ -40,6 +40,14 @@ export const portfolioItems: PortfolioItem[] = [
 		tags: ["Rust", "Algorithms", "Game Theory"],
 		slug: "taures-chess",
 		href: "/portfolio/taures-chess"
+	},
+	{
+		title: "Paced: Habit Tracker",
+		description: "Full-stack habit tracker and task manager combining behavioral science with modern web tech to help build better habits.",
+		image: "/images/paced/paced-hero.png",
+		tags: ["Svelte 5", "TypeScript", "PostgreSQL", "PWA"],
+		slug: "paced",
+		href: "/portfolio/paced"
 	}
 ];
 

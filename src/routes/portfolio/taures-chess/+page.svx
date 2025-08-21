@@ -7,99 +7,300 @@ tags: ["Rust", "Algorithms", "Game Theory"]
 
 # {title}
 
-Taures is a high-performance chess engine built from the ground up in Rust, showcasing modern systems programming techniques and advanced algorithms for game AI. This project represents my exploration into game theory, algorithm optimization, and the Rust programming language.
+Taures was bron from the ill concieved idea, that it would be nice to learn rust with a small project. Learning a new language with a famous steep learning curve,
+is only made easier when the project you choose is a famously hard problem that you know nothing about and for some reason wanting said output to run on any desktop platform (Tauri).
+If you want to check my awful code it is here: [GitHub](https://github.com/samumartinf/taures)
 
 ![Chess Banner](/images/Taures/chessBanner.jpeg)
-
 ## Project Overview
 
-Building a chess engine is a fascinating challenge that combines computer science theory with practical programming skills. Taures implements sophisticated algorithms for position evaluation, move generation, and game tree search, all while leveraging Rust's memory safety and performance characteristics.
+Building a chess engine has been an extremely rewarding experience. While extremely frustrating, I have learned loads and I am 
+ever grateful there is a whole communit of nerds in [Chess programming wiki](https://www.chessprogramming.org/) that gracefully
+share some incredibly niche knowledge.
 
-## Key Features
+# The Chess Engine Journey: From Arrays to Bitboards
 
-### Move Generation
-- **Bitboard representation**: Efficient board state representation using 64-bit integers
-- **Magic bitboard attacks**: Fast sliding piece attack generation
-- **Legal move validation**: Complete rule enforcement including castling, en passant, and promotion
+*How to make a 300x faster chess engine by migrating from basic arrays to optimized bitboards*
+Or the story on how my first implementation in rust was incredibly bad (skill issue).
 
-### Search Algorithm
-- **Minimax with Alpha-Beta pruning**: Classical game tree search with significant optimization
-- **Iterative deepening**: Progressive depth-first search for time management
-- **Transposition tables**: Caching of previously evaluated positions
-- **Move ordering**: Heuristics to search promising moves first
+## 🎯 The Challenge
 
-### Evaluation Function
-- **Material balance**: Basic piece value assessment
-- **Positional factors**: Piece-square tables for positional understanding
-- **King safety**: Evaluation of king protection and pawn structure
-- **Endgame knowledge**: Specialized evaluation for endgame positions
+Building a chess engine is deceptively simple at first glance. You need to:
+- Represent a chess board
+- Generate legal moves for each piece
+- Validate moves (no leaving king in check)
+- Search for the best move
 
-## Technical Implementation
+Computers are famously great at repetitive tasks, a board is 64 squares like bytes in modern architecture and chess computers 
+have been used since the 70s, how hard could it be to make this fast? If you don't know what you are doing, turns out it is very hard.
 
-The engine is structured around several core modules:
+## 🚀 Why Rust?
+
+Before diving into the technical details, let's address the elephant in the room: **Why Rust for a chess engine?**
+
+### Prime reason 
+Re-write it in rust meme.
+
+### Performance 
+As chess engines are famously a CPU intensive problem, I wanted to learn a low level programming language to have in my toolbox. 
+While I had some knowledge of C/C++ from uni, I could not manage any project in those languages. Rust being introduced in the Linux 
+kernel, the hype about the DX and other features, see below, tempted me enough.
+
+### Memory Safety
+Chess engines manipulate complex data structures constantly. Rust's ownership system prevents common bugs like use-after-free, double-free, and data races that could crash the engine mid-game.
+
+### Cross-Platform
+With Tauri, we can build native desktop apps for Windows, macOS, and Linux from a single Rust codebase. No need for platform-specific optimizations.
+
+### Modern Tooling
+Cargo, Rust's package manager, makes dependency management and testing straightforward. The ecosystem is mature and well-maintained.
+
+## 🏗️ Phase 1: The Naive Array Implementation
+
+The journey began with the most straightforward approach: representing the chess board as a simple 8x8 array.
 
 ```rust
-// Example of the main search function
-pub fn search(&mut self, depth: i32, alpha: i32, beta: i32) -> i32 {
-    if depth == 0 {
-        return self.evaluate();
-    }
-    
-    let moves = self.generate_moves();
-    let mut best_score = alpha;
-    
-    for mv in moves {
-        self.make_move(mv);
-        let score = -self.search(depth - 1, -beta, -best_score);
-        self.undo_move();
-        
-        if score >= beta {
-            return beta; // Beta cutoff
-        }
-        
-        if score > best_score {
-            best_score = score;
-        }
-    }
-    
-    best_score
+// Simple 8x8 array representation
+struct Board {
+    squares: [u8; 64],  // Each square contains a piece or 0 for empty
+    white_turn: bool,
+    castling_rights: u8,
+    en_passant: String,
 }
 ```
 
-## Performance Optimization
+### The Good
+- **Simple to understand**: Each square is just an index in an array
+- **Easy to debug**: You can print the board and see exactly what's where
+- **Straightforward move generation**: Iterate through squares, check piece types
 
-Rust's zero-cost abstractions and memory safety make it an excellent choice for performance-critical applications like chess engines. Key optimizations include:
+### The Bad
+- **Expensive operations**: Finding all pieces of a certain type requires scanning the entire board
+- **Move validation overhead**: Each move requires cloning the entire game state to test legality
+- **Memory allocations**: Constant cloning creates garbage collection pressure
 
-- **Bitwise operations**: Leveraging CPU bit manipulation instructions
-- **Stack allocation**: Minimizing heap allocations during search
-- **Branch prediction**: Structuring code to help CPU prediction
-- **Cache locality**: Data structures designed for cache efficiency
+### Performance Reality Check
+The initial implementation could evaluate about 100-1,000 positions per second. A depth-2 search (looking 2 moves ahead) took 2-3 seconds. 
+This was a lovely reality check that barely made me question my programming abilities.
 
-## Future Development
+## 🔧 The Bottlenecks 
+Making rust this slow is hard, so let's find out what I did.
 
-While Taures already plays competent chess, there are several areas for enhancement:
+### 1. Double Move Generation
+```rust
+// OLD: We were generating moves twice!
+let pseudolegal_moves = generate_pseudolegal_moves();
+let legal_moves = remove_illegal_moves(pseudolegal_moves); // Expensive!
+```
+To remove illigal moves I had to recalc all possible positions (oops)
 
-- **Machine learning integration**: Neural network evaluation functions
-- **Opening book**: Database of opening theory and variations
-- **Endgame tablebase**: Perfect play in simplified endgame positions
-- **UCI protocol**: Standard interface for chess GUI integration
-- **Parallel search**: Multi-threaded search for modern multi-core systems
+### 2. Expensive Legal Move Filtering
+The `remove_illegal_moves()` function was cloning the entire game state for each move to test legality. This created massive overhead.
 
-## Challenges and Learnings
 
-Developing a chess engine provided invaluable insights into:
+### 3. Inefficient Search Algorithm
+Our alpha-beta implementation wasn't optimized for the specific data structures we were using.
 
-- **Algorithm complexity**: Understanding the exponential nature of game tree search
-- **Optimization techniques**: Balancing code clarity with performance requirements
-- **Rust ownership model**: Leveraging Rust's unique approach to memory management
-- **Testing strategies**: Ensuring correctness in a complex, stateful system
+## 🚀 Phase 2: The Bitboard Revolution
+Bitboards represent the chess board as 64-bit integers, where each bit represents a square. Learning about this data-structure was wonderful
+and eye openning experience, but boy did it make me feel inadequate. 
 
-This project represents an ongoing exploration of the intersection between theoretical computer science and practical systems programming, implemented in one of the most exciting modern programming languages.
+### What Are Bitboards?
 
-## Technical Specifications
+A bitboard is a 64-bit integer where each bit represents a square on the chess board:
 
-- **Language**: Rust 2021 Edition
-- **Search depth**: Configurable, typically 6-8 ply
-- **Nodes per second**: ~500k on modern hardware
-- **Memory usage**: Less than 50MB during normal operation
-- **Platform**: Cross-platform (Linux, macOS, Windows)
+```
+Bitboard representation of white pawns:
+00000000   (rank 8 - empty)
+00000000   (rank 7 - empty)
+00000000   (rank 6 - empty)
+00000000   (rank 5 - empty)
+00000000   (rank 4 - empty)
+11111111   (rank 2 - all white pawns)
+00000000   (rank 1 - empty)
+```
+
+### Why Bitboards Are Fast
+
+1. **Bitwise operations**: AND, OR, XOR operations on 64-bit integers are extremely fast
+2. **Population count**: Counting set bits (pieces) is a single CPU instruction
+3. **Move generation**: Sliding piece moves can be calculated using precomputed tables
+4. **Attack detection**: Checking if a square is attacked is just a few bitwise operations
+
+### Magic Bitboards for Sliding Pieces
+
+The real magic happens with sliding pieces (queens, rooks, bishops). We precompute lookup tables that map any board configuration to the legal moves for that piece.
+
+```rust
+// Precomputed magic bitboard tables for sliding pieces
+static ref ROOK_ATTACKS: [[u64; 64]; 4096] = /* ... */;
+static ref BISHOP_ATTACKS: [[u64; 64]; 512] = /* ... */;
+```
+
+This allows us to calculate rook and bishop moves in just a few CPU cycles, regardless of the board complexity.
+
+## 🔧 The Optimization Pipeline
+
+### 1. Single Move Generation + Fast Legality Check
+```rust
+// NEW: Single generation + fast legality check
+let moves = get_all_moves_bitboard();
+for mv in moves {
+    if game.play_move_ob(mv) {  // Fast move execution
+        let king_square = find_king_square();
+        if !is_square_attacked_fast(king_square) {  // Fast attack detection
+            // Move is legal, continue search
+        }
+        game.undo_move();  // Fast undo
+    }
+}
+```
+
+### 2. Fast Bitboard Attack Detection
+- Replaced expensive game state cloning with bitboard-based attack detection
+- Used precomputed magic bitboard tables for sliding piece attacks
+- Lightning-fast king square finding using bit scanning
+
+### 3. Streamlined Alpha-Beta Search
+- Eliminated redundant move generation calls
+- Added proper checkmate/stalemate detection
+- Optimized move ordering and pruning
+
+### 4. Smart Memory Management
+- Board cloning only at evaluation nodes (depth 0)
+- Reused existing move stack infrastructure
+- Minimized allocations in hot paths
+
+## 📊 The Results: 300x Performance Improvement
+
+The transformation was dramatic:
+
+| Metric | Before (Arrays) | After (Bitboards) | Improvement |
+|--------|------------------|-------------------|-------------|
+| **Depth 2 Search** | ~2-3 seconds | ~8ms | **300x faster** |
+| **Positions/Second** | ~100-1,000 | 50,000+ | **50x faster** |
+| **Move Generation** | Double work | Single pass | **2x reduction** |
+| **Legality Checking** | Game cloning | Bitboard attacks | **100x faster** |
+
+### What This Means for Users
+- **Responsive UI**: You can no longer nap between turns against my engine
+- **Deeper analysis**: We can now search 4-5 moves ahead in reasonable time
+- **Better play**: Faster search means better move selection
+- **Smooth experience**: No more waiting for the engine to "think"
+
+## 🧪 Testing and Validation
+
+Performance improvements are meaningless if they break functionality. We implemented comprehensive testing:
+
+### Perft Testing
+We used the standard chess perft test to validate move generation correctness:
+
+```rust
+#[test]
+fn test_legal_move_generation() {
+    let mut new_game = Game::init();
+    let moves = perft(1, &mut new_game);
+    let moves2 = perft(2, &mut new_game);
+    let moves3 = perft(3, &mut new_game);
+    let moves4 = perft(4, &mut new_game);
+    
+    assert_eq!(moves, 20);      // Starting position: 20 legal moves
+    assert_eq!(moves2, 400);    // After 2 moves: 400 positions
+    assert_eq!(moves3, 8902);   // After 3 moves: 8,902 positions
+    assert_eq!(moves4, 197281); // After 4 moves: 197,281 positions
+}
+```
+
+### Edge Case Testing
+We tested complex scenarios like:
+- Castling through check
+- En passant captures
+- Promotion moves
+- Checkmate detection
+- Stalemate detection
+
+## 🎯 Key Technical Insights
+
+### 1. Bitboards Excel at Attack Detection
+Magic bitboard lookups for sliding pieces are orders of magnitude faster than traditional ray-casting. The investment in large lookup tables pays massive dividends in hot search paths.
+
+### 2. Make/Unmake vs State Cloning
+Direct board manipulation is vastly superior to defensive copying for search algorithms. Our `play_move_ob()` and `undo_move()` functions are optimized for speed.
+
+### 3. Single Responsibility
+Separating move generation from legality filtering allowed each to be optimized independently. This modular approach made the code easier to debug and optimize.
+
+### 4. Precomputed Tables
+The investment in large lookup tables (like our `masks.rs` file) pays massive dividends in hot search paths. Memory usage is a small price to pay for 100x performance improvements.
+
+## 🚀 The Frontend: Svelte 5 + Tauri
+As I already knew some svelte, I decided to also provide a nicer UI to play.
+
+### Why Tauri?
+- **Native Performance**: No Electron overhead, smaller bundle sizes
+- **Rust Integration**: Seamless communication between frontend and backend
+- **Cross-Platform**: Single codebase for Windows, macOS, and Linux
+
+### UI Components
+We built a custom UI component library using Tailwind CSS:
+- Responsive chessboard with ChessboardJS integration
+- Modern button and input components
+- Card layouts for game information
+- Smooth animations and transitions
+
+## 🔮 What's Next?
+The optimization journey never ends. Here's what I could do next.
+
+### 1. Advanced Search Algorithms
+- **Transposition Tables**: Cache previously evaluated positions
+- **Killer Moves**: Prioritize moves that caused beta cutoffs
+- **Null Move Pruning**: Skip some moves to search deeper
+
+### 2. Position Evaluation
+- **Piece-Square Tables**: Position pieces optimally
+- **Pawn Structure Analysis**: Evaluate pawn formations
+- **King Safety**: Assess king vulnerability
+
+### 3. Endgame Knowledge
+- **Endgame Tablebases**: Perfect play for simple endgames
+- **Pattern Recognition**: Identify winning patterns
+
+### 4. AI Improvements
+- **Neural Networks**: Modern evaluation functions
+- **Opening Books**: Larger, more sophisticated opening databases
+- **Time Management**: Smart time allocation based on position complexity
+
+## 💡 Lessons Learned
+
+### 1. Profile First, Optimize Second
+We spent time optimizing the wrong things initially. Profiling revealed that move generation was the real bottleneck, not the search algorithm.
+
+### 2. Data Structures Matter
+The choice of data structure (arrays vs bitboards) had a massive impact on performance. Sometimes the "obvious" solution isn't the best one.
+
+### 3. Test Everything
+Performance optimizations can introduce subtle bugs. Comprehensive testing is essential.
+
+### 4. Premature Optimization Isn't Always Evil
+In performance-critical applications like chess engines, choosing the right architecture from the start pays dividends.
+
+### 5. Community Knowledge is Priceless
+The chess programming community has decades of optimization knowledge. Don't reinvent the wheel.
+
+## 🎉 Conclusion
+
+Our journey from a naive array-based chess engine to a high-performance bitboard implementation demonstrates the power of:
+
+- **Rust** for performance-critical applications
+- **Bitboards** for chess-specific optimizations
+- **Profiling** to identify real bottlenecks
+- **Testing** to ensure correctness
+- **Modular design** for maintainable optimizations
+
+The result is a chess engine that's not just fast, but **300x faster** than our initial implementation. What started as a 2-3 second delay for basic analysis is now an instant response that makes the chess application feel responsive and enjoyable to use.
+
+The optimization transformed our engine from unusably slow to tournament-competitive, proving that with the right tools and techniques, even complex problems like chess engines can be solved efficiently.
+
+---
+
+*This journey shows that sometimes the best optimization isn't making your code faster - it's making your data structures smarter.*

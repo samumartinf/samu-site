@@ -7,7 +7,7 @@
 		backgroundClass?: string;
 		}
 
-	let { showTitle = true, maxItems = 4, backgroundClass = "bg-muted/20" }: Props = $props();
+	let { showTitle = true, maxItems = 10, backgroundClass = "bg-muted/20" }: Props = $props();
 
 	const portfolioItems: PortfolioItem[] = getAllPortfolioItems();
 	const displayItems = portfolioItems.slice(0, maxItems);

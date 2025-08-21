@@ -27,6 +27,20 @@
 	];
 	const fullText = 'Samuel Martin Frias';
 
+	// Calculate current age dynamically
+	function calculateAge() {
+		const birthDate = new Date('1997-12-08');
+		const today = new Date();
+		let age = today.getFullYear() - birthDate.getFullYear();
+		const monthDiff = today.getMonth() - birthDate.getMonth();
+		if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+			age--;
+		}
+		return age;
+	}
+
+	const currentAge = calculateAge();
+
 	function getAorAn(text: string) {
 		if (['a', 'e', 'i', 'o', 'u'].includes(text.charAt(0).toLowerCase())) {
 			return 'an';
@@ -132,10 +146,10 @@
 				: 'opacity-0'}"
 			style="animation-delay: 2s;"
 		>
-			27-year-old engineer based in London, passionate about mathematical modeling, biomedical
-			engineering, and fintech. Currently building high-performance FX trading systems at an <span
-				class="font-semibold text-primary">investment bank</span
-			>.
+			{currentAge}-year-old Senior SWE living in London, where I spend my days making computers move
+			money really, really fast at an Investment Bank. I work mostly with
+			<span class="font-semibold text-primary">C#, Typescript, Python and Rust </span>. I
+			especialise in financial softare, and UIs that move at the speed of the market.
 		</p>
 
 		<div

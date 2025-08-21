@@ -23,6 +23,6 @@
 			</p>
 		</div>
 
-		<Portfolio showTitle={false} backgroundClass="bg-transparent" />
+		<Portfolio showTitle={false} backgroundClass="bg-transparent" maxItems={999} />
 	</div>
 </main>
