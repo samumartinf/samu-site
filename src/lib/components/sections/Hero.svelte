@@ -146,10 +146,10 @@
 				: 'opacity-0'}"
 			style="animation-delay: 2s;"
 		>
-			{currentAge}-year-old Senior SWE living in London, where I spend my days making computers move
-			money really, really fast at an Investment Bank. I work mostly with
-			<span class="font-semibold text-primary">C#, Typescript, Python and Rust </span>. I
-			especialise in financial softare, and UIs that move at the speed of the market.
+			{currentAge}-year-old Senior SWE living in London, currently working in the FX desk at an
+			investment bank. I work mostly with
+			<span class="font-semibold text-primary">C#, Typescript, Python and Rust </span>. I specialise
+			in financial softare, and UIs that move at the speed of the market.
 		</p>
 
 		<div
