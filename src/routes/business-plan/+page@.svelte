@@ -3,7 +3,17 @@
 	import Reveal from 'reveal.js';
 	import 'reveal.js/dist/reveal.css';
 	import 'reveal.js/dist/theme/white.css';
-	import { ArrowUpDown, Sprout, Puzzle, FileCheck, Building2, TrendingUp } from '@lucide/svelte';
+	import {
+		ArrowUpDown,
+		Sprout,
+		Puzzle,
+		FileCheck,
+		Building2,
+		TrendingUp,
+		Scale,
+		Wind,
+		Globe
+	} from '@lucide/svelte';
 
 	let deck: Reveal.Api;
 
@@ -200,6 +210,95 @@
 						>cannot profitably support</strong
 					>.
 				</p>
+			</div>
+		</section>
+
+		<!-- Slide 3: Three Converging Forces -->
+		<section data-background-color="#f5f5f0">
+			<h1 class="slide-title">Three Converging Forces Are Reshaping the Energy Landscape</h1>
+
+			<div class="forces-container">
+				<!-- Force 1: Regulatory Mandates -->
+				<div class="force-card force-regulatory">
+					<div class="force-icon">
+						<Scale size={48} strokeWidth={1.5} />
+					</div>
+					<h2 class="force-title">1. Regulatory Mandates Create Urgent Replacement Cycles</h2>
+
+					<div class="force-content">
+						<div class="force-point">
+							<h4>Europe's CSRD:</h4>
+							<p>
+								Affecting 50,000+ companies from 2025, it now drives <strong>70%</strong> of ETRM upgrade
+								decisions. Non-compliance carries fines up to <strong>€20M</strong> or
+								<strong>4%</strong> of revenue.
+							</p>
+						</div>
+
+						<div class="force-point">
+							<h4>Carbon Pricing:</h4>
+							<p>
+								The expansion of schemes like the EU ETS fosters sophisticated, auditable tracking
+								capabilities. <strong>70-80%</strong> of current RFPs now include carbon management requirements,
+								up from 25% in 2022.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Force 2: Energy Transition -->
+				<div class="force-card force-energy">
+					<div class="force-icon">
+						<Wind size={48} strokeWidth={1.5} />
+					</div>
+					<h2 class="force-title">2. The Energy Transition Redefines ETRM Functionality</h2>
+
+					<div class="force-content">
+						<div class="force-point">
+							<h4>New Asset Classes:</h4>
+							<p>
+								The core task is shifting from managing oil and gas to managing intermittent renewables,
+								battery storage, and Virtual Power Plants (VPPs).
+							</p>
+						</div>
+
+						<div class="force-point">
+							<h4>New Contracts:</h4>
+							<p>
+								The explosion in Corporate Power Purchase Agreements (PPAs) requires complex, long-term
+								(10-20 year) hourly settlement and certificate management that spreadsheets cannot
+								handle. Europe alone saw a <strong>474%</strong> increase in PPA volume in 2024.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Force 3: Corporate Sustainability -->
+				<div class="force-card force-sustainability">
+					<div class="force-icon">
+						<Globe size={48} strokeWidth={1.5} />
+					</div>
+					<h2 class="force-title">3. Corporate Sustainability: The Primary Demand Driver</h2>
+
+					<div class="force-content">
+						<div class="force-point">
+							<h4>A New Customer Segment:</h4>
+							<p>
+								Over 10,000 companies with Science-Based Targets (a <strong>102%</strong> increase in
+								2023) are now active energy market participants, managing their own renewable PPAs and
+								carbon footprints.
+							</p>
+						</div>
+
+						<div class="force-point">
+							<h4>Investor Pressure:</h4>
+							<p>
+								<strong>97%</strong> of investors demand audited ESG data, making robust energy and
+								emissions tracking a board-level imperative.
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 	</div>
@@ -426,5 +525,86 @@
 
 	.conclusion-box strong {
 		color: #ffd700;
+	}
+
+	/* Slide 3: Three Converging Forces Styles */
+	.forces-container {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0.8em;
+	}
+
+	.force-card {
+		border-radius: 6px;
+		padding: 0.8em;
+		color: white;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+		border-top: 4px solid rgba(255, 255, 255, 0.3);
+	}
+
+	.force-regulatory {
+		background: linear-gradient(135deg, #1e3a5f 0%, #2c4f7c 100%);
+	}
+
+	.force-energy {
+		background: linear-gradient(135deg, #a67c00 0%, #c9984a 100%);
+	}
+
+	.force-sustainability {
+		background: linear-gradient(135deg, #5a6c7d 0%, #708090 100%);
+	}
+
+	.force-icon {
+		margin-bottom: 0.5em;
+		opacity: 0.95;
+	}
+
+	.force-title {
+		font-size: 0.62em !important;
+		margin: 0 0 0.6em 0 !important;
+		font-weight: 600 !important;
+		color: white !important;
+		line-height: 1.2 !important;
+		min-height: 2.4em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.force-content {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6em;
+		width: 100%;
+		text-align: left;
+	}
+
+	.force-point {
+		background: rgba(255, 255, 255, 0.12);
+		padding: 0.5em;
+		border-radius: 4px;
+		backdrop-filter: blur(10px);
+	}
+
+	.force-point h4 {
+		font-size: 0.52em !important;
+		margin: 0 0 0.3em 0 !important;
+		font-weight: 600 !important;
+		color: white !important;
+	}
+
+	.force-point p {
+		font-size: 0.42em;
+		line-height: 1.35;
+		margin: 0;
+	}
+
+	.force-point strong {
+		color: #ffd700;
+		font-weight: 600;
 	}
 </style>
