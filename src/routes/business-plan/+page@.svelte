@@ -16,7 +16,11 @@
 		Castle,
 		Users,
 		Euro,
-		AlertTriangle
+		AlertTriangle,
+		Target,
+		DollarSign,
+		Zap,
+		Shield
 	} from '@lucide/svelte';
 
 	let deck: Reveal.Api;
@@ -385,6 +389,159 @@
 			<div class="mbb-bottom-message">
 				The mid-market is not a low-end segment—it's the launchpad for the next attack on our enterprise
 				position
+			</div>
+		</section>
+
+		<!-- Slide 5: Competition Analysis -->
+		<section data-background-color="#ffffff">
+			<h1 class="mbb-title">The Competition: A Tale of Two Challengers Validating the Model</h1>
+
+			<div class="competition-layout">
+				<!-- Left Column: Molecule -->
+				<div class="competitor-column">
+					<div class="competitor-header competitor-header-molecule">
+						<Castle size={28} />
+						<div>
+							<h2>Molecule</h2>
+							<p class="competitor-subtitle">The American SaaS Disruptor</p>
+						</div>
+					</div>
+
+					<div class="competitor-section">
+						<div class="section-icon"><Target size={24} /></div>
+						<div class="section-content">
+							<h3>Positioning</h3>
+							<p>
+								Founded in 2020 (Connecticut), Molecule is a <strong>cloud-native SaaS ETRM</strong>
+								targeting the <strong>mid-market renewables sector</strong> in North America. They explicitly
+								position as the "modern alternative" to legacy players.
+							</p>
+						</div>
+					</div>
+
+					<div class="competitor-section">
+						<div class="section-icon"><DollarSign size={24} /></div>
+						<div class="section-content">
+							<h3>Pricing</h3>
+							<p>
+								Subscription-based: <strong>€100-200K ARR</strong> for mid-market clients. No upfront
+								license fees. This pricing makes them accessible to renewable developers and mid-size
+								utilities that cannot afford enterprise solutions.
+							</p>
+						</div>
+					</div>
+
+					<div class="competitor-section">
+						<div class="section-icon"><Zap size={24} /></div>
+						<div class="section-content">
+							<h3>Speed</h3>
+							<p>
+								<strong>4-8 week implementation</strong> using standardised configurations. Cloud deployment
+								via AWS removes infrastructure overhead entirely.
+							</p>
+						</div>
+					</div>
+
+					<div class="competitor-section">
+						<div class="section-icon"><TrendingUp size={24} /></div>
+						<div class="section-content">
+							<h3>Traction</h3>
+							<p>
+								Raised <strong>€18M</strong> in Series A (2023). ARR estimated at <strong>€8-12M</strong>.
+								Client list includes solar developers and battery storage firms. Revenue grew
+								<strong>3x</strong> in 2023.
+							</p>
+						</div>
+					</div>
+
+					<div class="competitor-section">
+						<div class="section-icon"><Shield size={24} /></div>
+						<div class="section-content">
+							<h3>Vulnerability</h3>
+							<p>
+								<strong>Geographic focus:</strong> Molecule is US-centric and lacks deep European regulatory
+								expertise (CSRD, REMIT). <strong>Feature gaps:</strong> Weaker on complex multi-commodity
+								trading and enterprise-grade risk analytics.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Right Column: Previse -->
+				<div class="competitor-column">
+					<div class="competitor-header competitor-header-previse">
+						<Globe size={28} />
+						<div>
+							<h2>Previse</h2>
+							<p class="competitor-subtitle">The European Energy Specialist</p>
+						</div>
+					</div>
+
+					<div class="competitor-section">
+						<div class="section-icon"><Target size={24} /></div>
+						<div class="section-content">
+							<h3>Positioning</h3>
+							<p>
+								Founded in 2018 (Netherlands), Previse offers a <strong>modular ETRM platform</strong>
+								tailored to the European energy transition. They emphasise <strong
+									>regulatory compliance</strong
+								> (CSRD, REMIT) and renewable energy workflows.
+							</p>
+						</div>
+					</div>
+
+					<div class="competitor-section">
+						<div class="section-icon"><DollarSign size={24} /></div>
+						<div class="section-content">
+							<h3>Pricing</h3>
+							<p>
+								Module-based pricing: <strong>€120-250K</strong> for a typical mid-market setup (PPA
+								management + carbon tracking + basic trading). Lower entry barrier than enterprise vendors.
+							</p>
+						</div>
+					</div>
+
+					<div class="competitor-section">
+						<div class="section-icon"><Zap size={24} /></div>
+						<div class="section-content">
+							<h3>Speed</h3>
+							<p>
+								<strong>6-12 week implementations</strong> for standard configurations. Pre-built modules
+								for PPA management and carbon tracking accelerate deployment. 
+							</p>
+						</div>
+					</div>
+
+					<div class="competitor-section">
+						<div class="section-icon"><TrendingUp size={24} /></div>
+						<div class="section-content">
+							<h3>Traction</h3>
+							<p>
+								Private, but estimated ARR of <strong>€5-8M</strong>. Clients include Dutch utilities,
+								Nordic renewable developers, and corporate PPA buyers. Growing at <strong>40-50%</strong>
+								annually.
+							</p>
+						</div>
+					</div>
+
+					<div class="competitor-section">
+						<div class="section-icon"><Shield size={24} /></div>
+						<div class="section-content">
+							<h3>Vulnerability</h3>
+							<p>
+								<strong>Scale limitations:</strong> Previse struggles with very large, complex enterprise
+								deals. <strong>Brand weakness:</strong> Less name recognition compared to established ETRM
+								vendors. Smaller R&D budget limits innovation pace.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="competition-conclusion">
+				<strong>Key Message:</strong> Both challengers prove there is a profitable, fast-growing mid-market
+				segment that values speed, cloud delivery, and specialized renewable energy functionality—exactly what
+				Orchestrade Lite will provide, with the added credibility of the Orchestrade brand.
 			</div>
 		</section>
 	</div>
@@ -912,5 +1069,108 @@
 		font-size: 0.48em;
 		line-height: 1.3;
 		border-left: 4px solid #c65d47;
+	}
+
+	/* Slide 5: Competition Analysis Styles */
+	.competition-layout {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.8em;
+		margin-bottom: 0.5em;
+	}
+
+	.competitor-column {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3em;
+	}
+
+	.competitor-header {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		padding: 0.4em 0.5em;
+		border-radius: 3px;
+		margin-bottom: 0.2em;
+	}
+
+	.competitor-header-molecule {
+		background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+		color: white;
+	}
+
+	.competitor-header-previse {
+		background: linear-gradient(135deg, #b8860b 0%, #c9984a 100%);
+		color: white;
+	}
+
+	.competitor-header h2 {
+		font-size: 0.7em !important;
+		margin: 0 !important;
+		font-weight: 700 !important;
+		color: white !important;
+		text-align: left !important;
+	}
+
+	.competitor-subtitle {
+		font-size: 0.44em;
+		margin: 0;
+		opacity: 0.92;
+		font-style: italic;
+	}
+
+	.competitor-section {
+		display: flex;
+		gap: 0.4em;
+		background: #f8f8f8;
+		padding: 0.35em 0.45em;
+		border-radius: 2px;
+		border-left: 3px solid #e0e0e0;
+		align-items: flex-start;
+	}
+
+	.section-icon {
+		color: #2c3e50;
+		flex-shrink: 0;
+		margin-top: 0.05em;
+	}
+
+	.section-content {
+		flex: 1;
+	}
+
+	.section-content h3 {
+		font-size: 0.48em !important;
+		margin: 0 0 0.2em 0 !important;
+		font-weight: 600 !important;
+		color: #2c3e50 !important;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+	}
+
+	.section-content p {
+		font-size: 0.4em;
+		line-height: 1.25;
+		margin: 0;
+		color: #444;
+	}
+
+	.section-content strong {
+		color: #2c3e50;
+		font-weight: 600;
+	}
+
+	.competition-conclusion {
+		background: #2c3e50;
+		color: white;
+		padding: 0.45em 0.6em;
+		border-radius: 3px;
+		font-size: 0.44em;
+		line-height: 1.3;
+		border-left: 4px solid #b8860b;
+	}
+
+	.competition-conclusion strong {
+		color: #ffd700;
 	}
 </style>
