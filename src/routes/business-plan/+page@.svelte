@@ -12,7 +12,11 @@
 		TrendingUp,
 		Scale,
 		Wind,
-		Globe
+		Globe,
+		Castle,
+		Users,
+		Euro,
+		AlertTriangle
 	} from '@lucide/svelte';
 
 	let deck: Reveal.Api;
@@ -299,6 +303,88 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</section>
+
+		<!-- Slide 4: Agile Challengers -->
+		<section data-background-color="#ffffff">
+			<h1 class="mbb-title">Our enterprise model creates a mid-market vacuum that challengers exploit</h1>
+
+			<div class="mbb-layout">
+				<!-- Left Column: The Economics Don't Work -->
+				<div class="mbb-column">
+					<div class="mbb-section-header">
+						<div class="mbb-number">1</div>
+						<h3>The economics don't work</h3>
+					</div>
+
+					<div class="mbb-fact-box">
+						<div class="mbb-metric">€360-540K</div>
+						<p class="mbb-metric-label">Implementation cost (12 months, 3 FTEs)</p>
+					</div>
+
+					<div class="mbb-fact-box">
+						<div class="mbb-metric">€100-200K</div>
+						<p class="mbb-metric-label">Mid-market deal size</p>
+					</div>
+
+					<div class="mbb-callout mbb-callout-problem">
+						Our enterprise model is economically unviable for deals under €500K
+					</div>
+
+					<div class="mbb-bullet-list">
+						<div class="mbb-bullet">Deep customisation = high cost</div>
+						<div class="mbb-bullet">High-touch service = resource intensive</div>
+						<div class="mbb-bullet">Long implementations = delayed ROI</div>
+					</div>
+				</div>
+
+				<!-- Right Column: The Strategic Risk -->
+				<div class="mbb-column">
+					<div class="mbb-section-header">
+						<div class="mbb-number">2</div>
+						<h3>Creating a beachhead for competitors</h3>
+					</div>
+
+					<div class="mbb-market-stack">
+						<div class="mbb-market-tier mbb-tier-enterprise">
+							<div class="tier-label">Enterprise (€500K+)</div>
+							<div class="tier-status">Our stronghold</div>
+						</div>
+						<div class="mbb-arrow-down">↓</div>
+						<div class="mbb-market-tier mbb-tier-midmarket">
+							<div class="tier-label">Mid-Market (€100-300K)</div>
+							<div class="tier-competitors">
+								<span class="competitor-tag">Molecule</span>
+								<span class="competitor-tag">Previse</span>
+							</div>
+							<div class="tier-status-danger">Our blind spot</div>
+						</div>
+					</div>
+
+					<div class="mbb-impact-box">
+						<div class="impact-header">Strategic impact</div>
+						<div class="impact-items">
+							<div class="impact-item">
+								<span class="impact-icon">→</span>
+								<span>Lost revenue opportunity</span>
+							</div>
+							<div class="impact-item">
+								<span class="impact-icon">→</span>
+								<span>Funding competitor growth</span>
+							</div>
+							<div class="impact-item">
+								<span class="impact-icon">→</span>
+								<span>Future threat to core business</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="mbb-bottom-message">
+				The mid-market is not a low-end segment—it's the launchpad for the next attack on our enterprise
+				position
 			</div>
 		</section>
 	</div>
@@ -606,5 +692,225 @@
 	.force-point strong {
 		color: #ffd700;
 		font-weight: 600;
+	}
+
+	/* Slide 4: MBB-Style Agile Challengers */
+	.mbb-title {
+		font-size: 0.8em !important;
+		color: #2c3e50 !important;
+		margin: 0 0 0.6em 0 !important;
+		font-weight: 500 !important;
+		text-align: left !important;
+		line-height: 1.25 !important;
+		max-width: 95%;
+	}
+
+	.mbb-layout {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.2em;
+	}
+
+	.mbb-column {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5em;
+	}
+
+	.mbb-section-header {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		margin-bottom: 0.3em;
+	}
+
+	.mbb-number {
+		width: 1.4em;
+		height: 1.4em;
+		background: #2c3e50;
+		color: white;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 0.6em;
+		font-weight: 600;
+		flex-shrink: 0;
+	}
+
+	.mbb-section-header h3 {
+		font-size: 0.62em !important;
+		margin: 0 !important;
+		font-weight: 600 !important;
+		color: #2c3e50 !important;
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+	}
+
+	.mbb-fact-box {
+		background: #f8f8f8;
+		border-left: 3px solid #2c3e50;
+		padding: 0.45em 0.6em;
+	}
+
+	.mbb-metric {
+		font-size: 0.85em;
+		font-weight: 700;
+		color: #2c3e50;
+		margin: 0 0 0.15em 0;
+	}
+
+	.mbb-metric-label {
+		font-size: 0.42em;
+		color: #666;
+		margin: 0;
+		line-height: 1.25;
+	}
+
+	.mbb-callout {
+		padding: 0.5em 0.6em;
+		border-radius: 2px;
+		font-size: 0.44em;
+		line-height: 1.3;
+		font-weight: 500;
+	}
+
+	.mbb-callout-problem {
+		background: #fff8e1;
+		border-left: 3px solid #b8860b;
+		color: #6d5d0e;
+	}
+
+	.mbb-bullet-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3em;
+	}
+
+	.mbb-bullet {
+		font-size: 0.42em;
+		color: #444;
+		padding-left: 0.9em;
+		position: relative;
+		line-height: 1.3;
+	}
+
+	.mbb-bullet::before {
+		content: '•';
+		position: absolute;
+		left: 0;
+		font-weight: 700;
+		color: #2c3e50;
+	}
+
+	.mbb-market-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4em;
+		margin: 0.4em 0;
+	}
+
+	.mbb-market-tier {
+		padding: 0.5em;
+		border-radius: 2px;
+		border: 2px solid;
+	}
+
+	.mbb-tier-enterprise {
+		background: #e8f0f7;
+		border-color: #2c3e50;
+	}
+
+	.mbb-tier-midmarket {
+		background: #fef5f5;
+		border-color: #c65d47;
+	}
+
+	.tier-label {
+		font-size: 0.5em;
+		font-weight: 600;
+		margin-bottom: 0.25em;
+		color: #2c3e50;
+	}
+
+	.tier-status {
+		font-size: 0.42em;
+		color: #2c3e50;
+		font-weight: 500;
+	}
+
+	.tier-status-danger {
+		font-size: 0.42em;
+		color: #c65d47;
+		font-weight: 600;
+	}
+
+	.tier-competitors {
+		display: flex;
+		gap: 0.3em;
+		margin: 0.3em 0;
+	}
+
+	.competitor-tag {
+		background: white;
+		border: 1px solid #c65d47;
+		color: #c65d47;
+		padding: 0.15em 0.4em;
+		border-radius: 2px;
+		font-size: 0.38em;
+		font-weight: 600;
+	}
+
+	.mbb-arrow-down {
+		text-align: center;
+		font-size: 1em;
+		color: #999;
+		margin: 0.1em 0;
+	}
+
+	.mbb-impact-box {
+		background: #f8f8f8;
+		padding: 0.5em;
+		border-radius: 2px;
+	}
+
+	.impact-header {
+		font-size: 0.48em;
+		font-weight: 600;
+		color: #2c3e50;
+		margin-bottom: 0.4em;
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+	}
+
+	.impact-items {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3em;
+	}
+
+	.impact-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.4em;
+		font-size: 0.42em;
+		color: #444;
+		line-height: 1.3;
+	}
+
+	.impact-icon {
+		color: #c65d47;
+		font-weight: 700;
+		flex-shrink: 0;
+	}
+
+	.mbb-bottom-message {
+		background: #2c3e50;
+		color: white;
+		padding: 0.45em 0.7em;
+		margin-top: 0.6em;
+		font-size: 0.48em;
+		line-height: 1.3;
+		border-left: 4px solid #c65d47;
 	}
 </style>
