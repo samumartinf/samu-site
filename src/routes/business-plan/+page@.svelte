@@ -3,7 +3,7 @@
 	import Reveal from 'reveal.js';
 	import 'reveal.js/dist/reveal.css';
 	import 'reveal.js/dist/theme/white.css';
-	import { ArrowUpDown, Sprout, Puzzle, FileCheck } from '@lucide/svelte';
+	import { ArrowUpDown, Sprout, Puzzle, FileCheck, Building2, TrendingUp } from '@lucide/svelte';
 
 	let deck: Reveal.Api;
 
@@ -118,6 +118,90 @@
 				</div>
 			</div>
 		</section>
+
+		<!-- Slide 2: Market Bifurcation -->
+		<section data-background-color="#f5f5f0">
+			<h1 class="slide-title">The ETRM Market Has Split Into Two Distinct Arenas</h1>
+
+			<div class="bifurcation-container">
+				<!-- Path 1: Enterprise Arena -->
+				<div class="path enterprise-path">
+					<div class="path-header">
+						<Building2 size={32} />
+						<h2>Path 1: The Enterprise Arena</h2>
+						<p class="subtitle">(Our Current World)</p>
+					</div>
+
+					<div class="path-details">
+						<div class="detail-section">
+							<h3>Profile</h3>
+							<p>Large, complex deals<br /><strong>(€500K - €5M+)</strong></p>
+						</div>
+
+						<div class="detail-section">
+							<h3>Customers</h3>
+							<p>Oil majors, large utilities,<br />global banks</p>
+						</div>
+
+						<div class="detail-section">
+							<h3>Needs</h3>
+							<p>Multi-commodity, bespoke integrations,<br />high-touch support</p>
+						</div>
+
+						<div class="detail-section">
+							<h3>Growth</h3>
+							<p>Mature, stable growth<br />at <strong class="growth-rate">4-6% CAGR</strong></p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Path 2: Energy Transition Mid-Market -->
+				<div class="path midmarket-path">
+					<div class="path-header">
+						<TrendingUp size={32} />
+						<h2>Path 2: The Energy Transition Mid-Market</h2>
+						<p class="subtitle">(Our Blind Spot)</p>
+					</div>
+
+					<div class="path-details">
+						<div class="detail-section">
+							<h3>Profile</h3>
+							<p>Agile, standardised deals<br /><strong>(€100K - €300K)</strong></p>
+						</div>
+
+						<div class="detail-section">
+							<h3>Customers</h3>
+							<p>5,000-15,000 renewable developers,<br />corporate PPA buyers,<br />mid-size utilities</p>
+						</div>
+
+						<div class="detail-section">
+							<h3>Needs</h3>
+							<p>Rapid cloud deployment,<br />PPA management,<br />carbon tracking</p>
+						</div>
+
+						<div class="detail-section">
+							<h3>Growth</h3>
+							<p>
+								<strong class="growth-highlight">Renewable Energy ETRM:</strong>
+								<span class="growth-rate">8-12% CAGR</span><br />
+								<strong class="growth-highlight">Corporate PPA:</strong>
+								<span class="growth-rate">13-32% CAGR</span><br />
+								<strong class="growth-highlight">Carbon Trading:</strong>
+								<span class="growth-rate">35% CAGR</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="conclusion-box">
+				<p>
+					The fastest-growing segments of the market operate on a model our business <strong
+						>cannot profitably support</strong
+					>.
+				</p>
+			</div>
+		</section>
 	</div>
 </div>
 
@@ -228,5 +312,119 @@
 	:global(.reveal h1),
 	:global(.reveal h2) {
 		text-transform: none !important;
+	}
+
+	/* Slide 2: Market Bifurcation Styles */
+	.slide-title {
+		font-size: 0.95em !important;
+		color: #2c3e50 !important;
+		margin: 0 0 0.4em 0 !important;
+		font-weight: 600 !important;
+		text-align: center !important;
+	}
+
+	.bifurcation-container {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6em;
+		margin-bottom: 0.6em;
+	}
+
+	.path {
+		border-radius: 4px;
+		padding: 0.6em;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+	}
+
+	.enterprise-path {
+		background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+		color: white;
+	}
+
+	.midmarket-path {
+		background: linear-gradient(135deg, #b8860b 0%, #d4a029 100%);
+		color: white;
+	}
+
+	.path-header {
+		display: flex;
+		align-items: center;
+		gap: 0.4em;
+		margin-bottom: 0.4em;
+		flex-wrap: wrap;
+	}
+
+	.path-header h2 {
+		font-size: 0.65em !important;
+		margin: 0 !important;
+		font-weight: 600 !important;
+		color: white !important;
+	}
+
+	.path-header .subtitle {
+		font-size: 0.5em;
+		opacity: 0.9;
+		font-style: italic;
+		margin: 0;
+		margin-left: auto;
+	}
+
+	.path-details {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 0.5em;
+	}
+
+	.detail-section {
+		background: rgba(255, 255, 255, 0.15);
+		padding: 0.4em;
+		border-radius: 3px;
+		backdrop-filter: blur(10px);
+	}
+
+	.detail-section h3 {
+		font-size: 0.5em !important;
+		margin: 0 0 0.25em 0 !important;
+		font-weight: 600 !important;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: white !important;
+	}
+
+	.detail-section p {
+		font-size: 0.44em;
+		line-height: 1.3;
+		margin: 0;
+	}
+
+	.growth-rate {
+		color: #ffd700;
+		font-weight: 600;
+	}
+
+	.growth-highlight {
+		font-size: 0.9em;
+		display: block;
+		margin-top: 0.15em;
+	}
+
+	.conclusion-box {
+		background: #2c3e50;
+		color: white;
+		padding: 0.5em 0.8em;
+		border-radius: 4px;
+		border-left: 4px solid #c65d47;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+	}
+
+	.conclusion-box p {
+		margin: 0;
+		font-size: 0.58em;
+		line-height: 1.3;
+		text-align: center;
+	}
+
+	.conclusion-box strong {
+		color: #ffd700;
 	}
 </style>
