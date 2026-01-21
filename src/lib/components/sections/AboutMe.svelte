@@ -53,12 +53,12 @@
 				</p>
 
 				<p class="text-lg leading-relaxed text-muted-foreground">
-					My daily toolkit involves wrestling with <span class="font-semibold text-primary">C#</span
-					>, telling people to try
-					<span class="font-semibold text-primary">Rust</span>, automating with
-					<span class="font-semibold text-primary">Python</span>, and building sites like this one
-					in <span class="font-semibold text-primary">SvelteKit</span>. I'm perpetually curious
-					about new tech, always have a book on the go, and probably know way too much about
+					My daily toolkit includes <span class="font-semibold text-primary">C#</span> balancing development speed and execution speed. I have worked on 	
+					<span class="font-semibold text-primary">Orchestrade</span> both building it as well as around it. I also enjoy telling people to try
+					<span class="font-semibold text-primary">Rust</span> for anything that needs to be fast and correct,
+					automating with <span class="font-semibold text-primary">Python</span>, and building full-stack
+					applications in <span class="font-semibold text-primary">TypeScript</span> (like this site in SvelteKit).
+					I'm perpetually curious about new tech, always have a book on the go, and probably know way too much about
 					completely random topics.
 				</p>
 			</div>

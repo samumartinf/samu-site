@@ -8,7 +8,7 @@
 
 <svelte:head>
 	<title>Samuel Martin Frias - Engineer & Innovator</title>
-	<meta name="description" content="Portfolio of Samuel Martin Frias, a 27-year-old engineer based in London specializing in mathematical modeling, biomedical engineering, and fintech." />
+	<meta name="description" content="Samuel Martin Frias - Senior Software Engineer in London building trading systems and quantitative tools. I love diving deep into new domains—from Orchestrade integrations to full-stack applications." />
 </svelte:head>
 
 <main class="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">

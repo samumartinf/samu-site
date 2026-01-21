@@ -146,10 +146,9 @@
 				: 'opacity-0'}"
 			style="animation-delay: 2s;"
 		>
-			{currentAge}-year-old Senior SWE living in London, currently working in the FX desk at an
-			investment bank. I work mostly with
-			<span class="font-semibold text-primary">C#, Typescript, Python and Rust </span>. I specialise
-			in financial softare, and UIs that move at the speed of the market.
+			{currentAge}-year-old Senior SWE living in London, building trading systems and quantitative
+			tools. I love diving deep into new domains—whether that's portfolio management systems,
+			quantitative tools, or something I haven't encountered yet.
 		</p>
 
 		<div
