@@ -1,0 +1,133 @@
+---
+title: Fixing the iOS Black Bar Issue in Tauri v2 Apps
+description: If you're building a mobile app with Tauri v2 and notice a mysterious black bar at the bottom of your iOS app on first launch, you're not alone. This article explains the root cause and provides a simple fix.
+date: 2025-01-21
+tags: ["Tauri", "iOS", "Rust", "Mobile"]
+---
+
+# Fixing the iOS Black Bar Issue in Tauri v2 Apps
+
+If you're building a mobile app with Tauri v2 and notice a mysterious black bar at the bottom of your iOS app on first launch, you're not alone. This article explains the root cause and provides a simple fix.
+
+## The Problem
+
+When launching a Tauri v2 iOS app for the first time, a black bar appears at the bottom of the screen. The strange part? It disappears if you:
+
+- Rotate the device and rotate back
+- Background the app and bring it back
+- Basically, anything that triggers a layout recalculation
+
+This only affects iOS—Android and web work fine.
+
+## The Root Cause
+
+This is a known WKWebView bug that's been around since iOS 11. The same issue has plagued Cordova, Ionic, Capacitor, and other hybrid app frameworks for years.
+
+Here's what's happening:
+
+1. WKWebView (the browser engine Tauri uses on iOS) has a property called `contentInsetAdjustmentBehavior` on its internal scrollView
+2. By default, this is set to `Automatic`, which tells iOS to automatically adjust content insets based on safe areas
+3. On initial app launch, iOS calculates these insets before the webview has its final dimensions
+4. This causes `window.innerHeight` to report approximately 78 pixels less than the actual screen height
+5. Your CSS (`100vh`, `h-screen`, etc.) renders based on this incorrect value, leaving a black gap
+
+When you rotate the device or background/foreground the app, iOS forces a complete layout recalculation, which fixes the dimensions.
+
+## The Fix
+
+The solution is to set `contentInsetAdjustmentBehavior` to `Never` on the WKWebView's scrollView during app initialization. This is the same fix that Cordova implemented years ago.
+
+### Step 1: Add the objc2 dependency
+
+In your `src-tauri/Cargo.toml`, add:
+
+```toml
+# iOS-specific dependencies for WKWebView configuration
+[target.'cfg(target_os = "ios")'.dependencies]
+objc2 = "0.5"
+```
+
+### Step 2: Configure the WKWebView
+
+In your `src-tauri/src/lib.rs`:
+
+```rust
+use tauri::Manager;
+
+/// Configure iOS WKWebView to fix viewport sizing issue on initial launch.
+///
+/// This fixes a known WKWebView bug where the webview reports incorrect dimensions
+/// at startup due to automatic content inset adjustments for safe areas.
+/// Setting contentInsetAdjustmentBehavior to Never prevents this issue.
+#[cfg(target_os = "ios")]
+fn configure_ios_webview(window: &tauri::WebviewWindow) {
+    let _ = window.with_webview(|webview| {
+        use objc2::runtime::AnyObject;
+        use objc2::msg_send;
+
+        unsafe {
+            // Get the WKWebView pointer
+            let wk_webview: *mut AnyObject = webview.inner().cast();
+
+            // Get the scrollView from WKWebView
+            let scroll_view: *mut AnyObject = msg_send![wk_webview, scrollView];
+
+            // UIScrollViewContentInsetAdjustmentBehavior values:
+            // 0 = Automatic, 1 = ScrollableAxes, 2 = Never, 3 = Always
+            // We use Never (2) to prevent automatic inset adjustments
+            let never: isize = 2;
+            let _: () = msg_send![scroll_view, setContentInsetAdjustmentBehavior: never];
+        }
+    });
+}
+
+#[cfg_attr(mobile, tauri::mobile_entry_point)]
+pub fn run() {
+    tauri::Builder::default()
+        // ... your plugins ...
+        .setup(|app| {
+            // Configure iOS WKWebView to fix viewport sizing issue
+            #[cfg(target_os = "ios")]
+            if let Some(window) = app.get_webview_window("main") {
+                configure_ios_webview(&window);
+            }
+
+            // ... rest of your setup ...
+            Ok(())
+        })
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
+}
+```
+
+### Step 3: Rebuild
+
+```bash
+pnpm tauri ios build
+# or
+npm run tauri ios build
+```
+
+## Why This Works
+
+By setting `contentInsetAdjustmentBehavior` to `Never`, we tell iOS: "Don't automatically adjust the scroll view's content insets based on safe areas—we'll handle it ourselves."
+
+Since your web app is already handling safe areas via CSS (`env(safe-area-inset-*)` and `viewport-fit=cover`), this doesn't break anything. It just prevents the initial miscalculation that causes the black bar.
+
+## Historical Context
+
+This bug has a long history in the hybrid app ecosystem:
+
+- **2017**: [Cordova iOS Issue #933](https://github.com/apache/cordova-ios/issues/933) - First reported for iPhone X
+- **2017**: [Cordova WKWebView Engine Issue #108](https://github.com/nicklockwood/cordova-plugin-wkwebview-engine/issues/108) - Detailed analysis
+- **2024**: [Tauri Discussion #9368](https://github.com/tauri-apps/tauri/discussions/9368) - Tauri-specific reports
+
+The Cordova team eventually made this fix a default. Hopefully, Tauri/Wry will do the same.
+
+## Should This Be Fixed Upstream?
+
+Yes! This would be a great contribution to the [tauri-apps/wry](https://github.com/tauri-apps/wry) repository, which handles the platform-specific WebView setup. Making `contentInsetAdjustmentBehavior = Never` the default for iOS would save future developers from this headache.
+
+---
+
+*Tested with Tauri v2, iOS 14+, on iPhone devices with notches/Dynamic Island.*

@@ -8,6 +8,37 @@ export interface PortfolioItem {
 	externalUrl?: string;
 }
 
+export interface WritingPost {
+	title: string;
+	description: string;
+	date: string;
+	tags: string[];
+	slug: string;
+	href: string;
+}
+
+// Writing/blog posts - most recent first
+export const writingPosts: WritingPost[] = [
+	{
+		title: "Fixing the iOS Black Bar Issue in Tauri v2 Apps",
+		description: "If you're building a mobile app with Tauri v2 and notice a mysterious black bar at the bottom of your iOS app on first launch, you're not alone. This article explains the root cause and provides a simple fix.",
+		date: "2025-01-21",
+		tags: ["Tauri", "iOS", "Rust", "Mobile"],
+		slug: "tauri-ios-black-bar",
+		href: "/writing/tauri-ios-black-bar"
+	}
+];
+
+// Helper function to get writing post by slug
+export function getWritingPost(slug: string): WritingPost | undefined {
+	return writingPosts.find(post => post.slug === slug);
+}
+
+// Helper function to get all writing posts (already sorted by date, most recent first)
+export function getAllWritingPosts(): WritingPost[] {
+	return writingPosts;
+}
+
 // Static portfolio data that matches our markdown files
 export const portfolioItems: PortfolioItem[] = [
 	{
