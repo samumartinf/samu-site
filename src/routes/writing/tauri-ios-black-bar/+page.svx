@@ -7,7 +7,8 @@ tags: ["Tauri", "iOS", "Rust", "Mobile"]
 
 # Fixing the iOS Black Bar Issue in Tauri v2 Apps
 
-If you're building a mobile app with Tauri v2 and notice a mysterious black bar at the bottom of your iOS app on first launch, you're not alone. This article explains the root cause and provides a simple fix.
+I have been working on [Paced](www.paced.app) for a while now. Lately I realised these ugly bar at the bottom of my iOS app, it was there only on the first launch and it would go away upon rotating the device.
+So I spent way too long tinkering around to figure out how to fix it.
 
 ## The Problem
 
@@ -21,14 +22,14 @@ This only affects iOS—Android and web work fine.
 
 ## The Root Cause
 
-This is a known WKWebView bug that's been around since iOS 11. The same issue has plagued Cordova, Ionic, Capacitor, and other hybrid app frameworks for years.
+Apparently and annoyingly, this is a known WKWebView bug that's been around since iOS 11. The same issue has plagued Cordova, Ionic, Capacitor, and other hybrid app frameworks for years.
 
 Here's what's happening:
 
 1. WKWebView (the browser engine Tauri uses on iOS) has a property called `contentInsetAdjustmentBehavior` on its internal scrollView
 2. By default, this is set to `Automatic`, which tells iOS to automatically adjust content insets based on safe areas
 3. On initial app launch, iOS calculates these insets before the webview has its final dimensions
-4. This causes `window.innerHeight` to report approximately 78 pixels less than the actual screen height
+4. This causes `window.innerHeight` to report approximately 78 pixels less than the actual screen height (this is your ugly black bar at the bottom)
 5. Your CSS (`100vh`, `h-screen`, etc.) renders based on this incorrect value, leaving a black gap
 
 When you rotate the device or background/foreground the app, iOS forces a complete layout recalculation, which fixes the dimensions.
@@ -127,6 +128,7 @@ The Cordova team eventually made this fix a default. Hopefully, Tauri/Wry will d
 ## Should This Be Fixed Upstream?
 
 Yes! This would be a great contribution to the [tauri-apps/wry](https://github.com/tauri-apps/wry) repository, which handles the platform-specific WebView setup. Making `contentInsetAdjustmentBehavior = Never` the default for iOS would save future developers from this headache.
+I will see if this is something that makes sense to fix upstream and post here any updates.
 
 ---
 
