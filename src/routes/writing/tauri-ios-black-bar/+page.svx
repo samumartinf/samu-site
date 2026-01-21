@@ -128,7 +128,7 @@ The Cordova team eventually made this fix a default. Hopefully, Tauri/Wry will d
 ## Should This Be Fixed Upstream?
 
 Yes! This would be a great contribution to the [tauri-apps/wry](https://github.com/tauri-apps/wry) repository, which handles the platform-specific WebView setup. Making `contentInsetAdjustmentBehavior = Never` the default for iOS would save future developers from this headache.
-I will see if this is something that makes sense to fix upstream and post here any updates.
+I will see if this has any side-effects that are not welcome, but otherwise I will try to open a PR on this topic and update this post.
 
 ---
 
