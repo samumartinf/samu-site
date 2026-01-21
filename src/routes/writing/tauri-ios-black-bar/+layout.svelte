@@ -152,14 +152,23 @@
 		color: var(--color-accent);
 	}
 
-	:global(.prose ul, .prose ol) {
+	:global(.prose ul) {
 		color: var(--color-muted-foreground);
 		margin: 1rem 0;
 		padding-left: 1.5rem;
+		list-style-type: disc;
+	}
+
+	:global(.prose ol) {
+		color: var(--color-muted-foreground);
+		margin: 1rem 0;
+		padding-left: 1.5rem;
+		list-style-type: decimal;
 	}
 
 	:global(.prose li) {
 		margin: 0.5rem 0;
+		display: list-item;
 	}
 
 	:global(.prose blockquote) {

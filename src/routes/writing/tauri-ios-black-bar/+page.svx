@@ -7,8 +7,10 @@ tags: ["Tauri", "iOS", "Rust", "Mobile"]
 
 # Fixing the iOS Black Bar Issue in Tauri v2 Apps
 
-I have been working on [Paced](www.paced.app) for a while now. Lately I realised these ugly bar at the bottom of my iOS app, it was there only on the first launch and it would go away upon rotating the device.
+I have been working on [Paced](www.paced.app) for a while now. Lately I realised this ugly bar at the bottom of my iOS app would every now and then pop up. It was there only on the first launch and it would go away upon rotating the device.
 So I spent way too long tinkering around to figure out how to fix it.
+
+![Ugly iPhone black bar](/images/tauri-ios-black-bar/blackbar.png)
 
 ## The Problem
 
