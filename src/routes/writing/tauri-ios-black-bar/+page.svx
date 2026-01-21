@@ -118,8 +118,8 @@ Since your web app is already handling safe areas via CSS (`env(safe-area-inset-
 
 This bug has a long history in the hybrid app ecosystem:
 
-- **2017**: [Cordova iOS Issue #933](https://github.com/apache/cordova-ios/issues/933) - First reported for iPhone X
-- **2017**: [Cordova WKWebView Engine Issue #108](https://github.com/nicklockwood/cordova-plugin-wkwebview-engine/issues/108) - Detailed analysis
+- **2018**: [WKWebView does not layout property on iphone X](https://issues.apache.org/jira/browse/CB-13987) - Reports about a black bar at the bottom of the view
+- **2020**: [Cordova iOS Issue #933](https://github.com/apache/cordova-ios/issues/933) - Wrong size reported
 - **2024**: [Tauri Discussion #9368](https://github.com/tauri-apps/tauri/discussions/9368) - Tauri-specific reports
 
 The Cordova team eventually made this fix a default. Hopefully, Tauri/Wry will do the same.
