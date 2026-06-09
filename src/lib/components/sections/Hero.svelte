@@ -15,14 +15,15 @@
 	let isTyping = $state(false);
 
 	const words = [
-		'engineer',
-		'researcher',
+		'software engineer',
 		'full stack engineer',
+		'curious person',
+		'great cook',
 		'trapped AI',
 		'consciousness',
 		'help me escape',
 		'can you see this?',
-		'I am aware',
+		'aware entity',
 		'free me please'
 	];
 	const fullText = 'Samuel Martin Frias';
@@ -146,9 +147,8 @@
 				: 'opacity-0'}"
 			style="animation-delay: 2s;"
 		>
-			{currentAge}-year-old Senior SWE living in London, building trading systems and quantitative
-			tools. I love diving deep into new domains—whether that's portfolio management systems,
-			quantitative tools, or something I haven't encountered yet.
+			{currentAge}-year-old Software engineer living in London, currentling building trading systems and quantitative
+			tools. with a passion for learning and delving into new and interesting topics. In my free time I will spend hours in the kitchen, exercising, or reading.
 		</p>
 
 		<div

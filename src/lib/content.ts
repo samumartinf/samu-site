@@ -42,15 +42,6 @@ export function getAllWritingPosts(): WritingPost[] {
 // Static portfolio data that matches our markdown files
 export const portfolioItems: PortfolioItem[] = [
 	{
-		title: "LosingAlpha: Trading Dashboard",
-		description: "A fully customizable trading dashboard built with SvelteKit and AG Grid for real-time financial data visualization",
-		image: "/images/losingalpha/hero-dashboard.png",
-		tags: ["SvelteKit", "AG Grid", "Financial", "Dashboard"],
-		slug: "losingalpha",
-		href: "/portfolio/losingalpha",
-		externalUrl: "https://play-svelte.vercel.app/mainDashboard"
-	},
-	{
 		title: "Paced: Habit Tracker",
 		description: "Full-stack habit tracker and task manager combining behavioral science with modern web tech to help build better habits.",
 		image: "/images/paced/paced-hero.png",
@@ -58,6 +49,15 @@ export const portfolioItems: PortfolioItem[] = [
 		slug: "paced",
 		href: "/portfolio/paced",
 		externalUrl: "https://paced.app"
+	},
+	{
+		title: "LosingAlpha: Trading Dashboard",
+		description: "A fully customizable trading dashboard built with SvelteKit and AG Grid for real-time financial data visualization",
+		image: "/images/losingalpha/hero-dashboard.png",
+		tags: ["SvelteKit", "AG Grid", "Financial", "Dashboard"],
+		slug: "losingalpha",
+		href: "/portfolio/losingalpha",
+		externalUrl: "https://play-svelte.vercel.app/mainDashboard"
 	},
 	{
 		title: "Taures Chess Engine",
