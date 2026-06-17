@@ -1,86 +1,56 @@
 # Paced: A Todo and Habit Tracker That Actually Works
 
-I don't like any task management app on the App Store. I also believe habits are just tasks that need to be completed every day. Most importantly, no task management app works well across all devices (laptop, phone, iPad). So I built my own.
+I don't like any task management app on the App Store. I also think habits are just recurring tasks — same thing, different cadence. And no task app I've used syncs reliably across phone, laptop, and iPad. So I built my own.
 
 **[Try Paced →](https://paced.app)**
 
-## What It Does
+## What it does
 
-Paced is a task and habit management platform that works seamlessly across all your devices:
+You open it, you see what you need to do today. Habits and tasks live side by side because they *are* the same thing — one just repeats.
 
-- **Task Management**: Kanban boards, priorities, due dates, and project organization
-- **Habit Tracking**: Daily habits with streaks, progress visualization, and completion goals
-- **Cross-Device Sync**: Works offline, syncs when you're back online
-- **Clean Interface**: No clutter, just what you need to get things done
+- **Habits** with streaks, completion goals, and a progress view that doesn't lie to you
+- **Tasks** organized by project, priority, and due date. Kanban if you want it
+- **Works on everything.** Phone, laptop, iPad — same data, same UI, no surprises
+- **Actually works offline.** Service workers handle local persistence. Syncs when you're back online
+- **No feature swamp.** Just what you need. The app doesn't try to be Notion
 
-## Tech Stack
+## Why I built this
 
-### Frontend
-- **Svelte 5 with Runes**: Modern reactive programming with excellent performance
-- **TypeScript**: Type safety throughout the entire application
-- **Tailwind CSS**: Utility-first styling for rapid development
-- **PWA**: Progressive Web App that works offline and installs like a native app
+Existing task apps fail at exactly one thing: making sure your phone and laptop agree on what's due. You add something on your phone during a commute, open your laptop at work, and it's not there. Or it's there but the due date is wrong. Or sync broke because you went through a tunnel.
 
-### Backend
-- **SvelteKit**: Full-stack framework with server-side rendering
-- **PostgreSQL**: Reliable database with complex queries for analytics
-- **Drizzle ORM**: Type-safe database operations
-- **Custom Authentication**: JWT-based auth system
+I wanted something where:
+- I never have to think about whether it synced
+- Habits and tasks aren't in separate universes
+- The UI doesn't make me want to close it
+- It works when I'm on the Tube
 
-### Features
-- **Offline-First**: Service workers ensure data persistence without internet
-- **Real-time Sync**: Changes sync across all devices when online
-- **Internationalization**: Multi-language support (English, Spanish)
-- **Dark Mode**: System preference detection with manual override
-- **Responsive Design**: Works seamlessly on mobile, tablet, and desktop
+## Tech choices
 
-## The Problem I Solved
+**Svelte 5** with runes. Reactivity without the boilerplate. I picked this over React because the mental model is simpler and the bundle is smaller — important for a PWA that needs to load fast on bad connections.
 
-Most task apps fail at one thing: **cross-device consistency**. You add a task on your phone, but it's not on your laptop. Your iPad has different data than your desktop. Sync breaks when you're offline.
+**PostgreSQL + Drizzle ORM.** Type-safe queries from day one. No ORM magic, just SQL you can read.
 
-I wanted something that:
-- Works the same way on every device
-- Handles both tasks and habits in one place
-- Syncs reliably without losing data
-- Works offline (because WiFi isn't guaranteed)
+**PWA, not a native app.** I didn't want to maintain three codebases. One SvelteKit app, installed to home screen on iOS and Android, works the same everywhere. The tradeoff is real — push notifications are harder, some native APIs aren't available — but for a task app, the cross-platform consistency is worth it.
 
-## Technical Implementation
+**Offline-first from the start.** This was the right call. Retrofitting offline support into an app that wasn't designed for it is a nightmare. Service workers, local IndexedDB, conflict resolution — all planned from day one.
 
-### Architecture
-- **Offline-First Design**: All data is stored locally first, then synced to the server
-- **Conflict Resolution**: Handles simultaneous edits across devices gracefully  
-- **Progressive Enhancement**: Core functionality works without JavaScript
+## What was hard
 
-### Key Features
-- **State Management**: Svelte 5 runes provide reactive, predictable state updates
-- **Database Design**: Normalized PostgreSQL schema with proper relationships
-- **API Design**: RESTful endpoints with comprehensive error handling
-- **Performance**: Code splitting, lazy loading, and optimized bundle sizes
-- **Testing**: Unit tests with Vitest, E2E tests with Playwright
+- **Service workers across browsers.** Safari does things differently from Chrome. Always has. Caching strategies that work everywhere took weeks to get right.
+- **Timezone handling.** Habits reset at midnight. But whose midnight? What if you travel? JavaScript's `Date` is not your friend here.
+- **Conflict resolution.** Two devices edit the same task while offline. Last-write-wins is the lazy answer. I went with field-level merging, which is harder but loses less data.
+- **PWA install UX.** Apple makes "Add to Home Screen" deliberately obscure. Making that flow feel native took way more design iteration than I expected.
 
-## Development Challenges
+## What I'd do differently
 
-### The Tricky Parts
-- **Service Workers**: Getting offline sync to work reliably across all browsers
-- **Timezone Handling**: JavaScript date handling is... challenging
-- **Conflict Resolution**: What happens when you edit the same task on two devices?
-- **PWA Installation**: Making the "Add to Home Screen" experience smooth
-
-### What I Learned
-- Offline-first architecture should be planned from day one, not added later
-- TypeScript saves more time than it costs in setup
-- Simple features often have complex implementations
-- User testing reveals edge cases you never considered
+- Build the mobile layout first, then scale up. I did desktop-first and had to rework several components for mobile.
+- Start with E2E tests earlier. Playwright caught bugs that unit tests never would.
+- Simplify the auth flow. Custom JWT auth works but adds maintenance burden I didn't need for a solo project.
 
 ## Deployment
 
-- **Hosting**: Static site generation with SvelteKit
-- **Database**: PostgreSQL with connection pooling
-- **CDN**: Assets served from edge locations for speed
-- **Monitoring**: Error tracking and performance metrics
+SvelteKit static build deployed to Coolify on a Hetzner VPS. PostgreSQL on the same machine. Assets served through Cloudflare. Total cost: about €5/month. No serverless cold starts, no vendor lock-in.
 
 ---
 
-**Try it yourself: [paced.app →](https://paced.app)**
-
-**Source code: [GitHub →](https://github.com/samumartinf/paced)**
+**[Try it yourself →](https://paced.app)**  ·  **[Source →](https://github.com/samumartinf/paced)**
