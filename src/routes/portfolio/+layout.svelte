@@ -113,4 +113,49 @@
 		margin: 2rem 0;
 		border: none;
 	}
+
+	:global(.store-buttons) {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		flex-wrap: wrap;
+		margin-bottom: 2rem;
+		padding: 1.5rem;
+		background: var(--color-muted);
+		border-radius: 0.75rem;
+		border: 1px solid var(--color-border);
+	}
+
+	:global(.store-buttons a) {
+		text-decoration: none !important;
+		transition: opacity 0.2s;
+	}
+
+	:global(.store-buttons a:hover) {
+		opacity: 0.8;
+	}
+
+	:global(.store-buttons img) {
+		margin: 0 !important;
+		box-shadow: none !important;
+		border-radius: 0 !important;
+	}
+
+	:global(.desktop-download) {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem 1rem;
+		background: var(--color-primary);
+		color: white !important;
+		border-radius: 0.5rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		white-space: nowrap;
+	}
+
+	:global(.desktop-download:hover) {
+		background: var(--color-accent);
+		opacity: 1 !important;
+	}
 </style>

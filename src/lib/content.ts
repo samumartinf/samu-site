@@ -66,9 +66,9 @@ export function getAllWritingPosts(): WritingPost[] {
 export const portfolioItems: PortfolioItem[] = [
 	{
 		title: "Paced: Habit Tracker & Task Manager",
-		description: "Your phone and laptop should agree on what's due today. Paced makes sure they do. Tasks, habits, Kanban — one PWA, every device. Works offline. Syncs when it can. No bloat.",
+		description: "One codebase, six platforms. iOS, Android, Linux, macOS, Windows, and web — all native, all synced in real time. Habits and tasks in one app. Works offline. No bloat.",
 		image: "/images/paced/paced-hero.png",
-		tags: ["Svelte 5", "TypeScript", "PostgreSQL", "PWA"],
+		tags: ["Svelte 5", "Tauri v2", "PocketBase", "PWA"],
 		slug: "paced",
 		href: "/portfolio/paced",
 		externalUrl: "https://paced.app"

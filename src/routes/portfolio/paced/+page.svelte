@@ -4,10 +4,10 @@
 	import { page } from '$app/stores';
 
 	const metadata = {
-		title: "Paced: A Todo and Habit Tracker That Actually Works",
-		description: "A full-stack habit tracker and task manager that combines behavioral science with modern web tech to help build better habits.",
+		title: "Paced: One Codebase, Every Platform",
+		description: "Habit tracker and task manager that runs natively on iOS, Android, Linux, macOS, Windows, and web — all from a single SvelteKit + Tauri codebase.",
 		image: "/images/paced/paced-hero.png",
-		tags: ["Svelte 5", "TypeScript", "PostgreSQL", "PWA", "Behavioral Science"]
+		tags: ["Svelte 5", "Tauri v2", "PocketBase", "PWA", "Habit Tracking"]
 	};
 </script>
 
