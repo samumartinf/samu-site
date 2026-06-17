@@ -17,6 +17,29 @@ export interface WritingPost {
 	href: string;
 }
 
+export interface Recipe {
+	title: string;
+	description: string;
+	date: string;
+	slug: string;
+	href: string;
+	category: string;
+	tags: string[];
+}
+
+// Recipes — most recent first
+export const recipes: Recipe[] = [
+	{
+		title: "Chez Samuel — French Dinner Party",
+		description: "A four-course French bistro menu featuring roasted figs with burrata, beef tartare with roasted bone marrow, duck confit, and chocolate fondant.",
+		date: "2025-09-21",
+		slug: "20250921",
+		href: "/food/20250921",
+		category: "Dinner Party",
+		tags: ["French", "Duck", "Bistro", "Four Courses"]
+	}
+];
+
 // Writing/blog posts - most recent first
 export const writingPosts: WritingPost[] = [
 	{
@@ -42,8 +65,8 @@ export function getAllWritingPosts(): WritingPost[] {
 // Static portfolio data that matches our markdown files
 export const portfolioItems: PortfolioItem[] = [
 	{
-		title: "Paced: Habit Tracker",
-		description: "Full-stack habit tracker and task manager combining behavioral science with modern web tech to help build better habits.",
+		title: "Paced: Habit Tracker & Task Manager",
+		description: "I got tired of every task app having sync issues and bloated UIs. So I built my own — a cross-device PWA that handles habits and tasks in one clean interface. Works offline, syncs everywhere.",
 		image: "/images/paced/paced-hero.png",
 		tags: ["Svelte 5", "TypeScript", "PostgreSQL", "PWA"],
 		slug: "paced",
@@ -52,7 +75,7 @@ export const portfolioItems: PortfolioItem[] = [
 	},
 	{
 		title: "LosingAlpha: Trading Dashboard",
-		description: "A fully customizable trading dashboard built with SvelteKit and AG Grid for real-time financial data visualization",
+		description: "A drag-and-drop trading dashboard I built because existing tools were either too expensive or too rigid. Custom widgets, real-time P&L, and a layouts system that lets you build exactly the view you need.",
 		image: "/images/losingalpha/hero-dashboard.png",
 		tags: ["SvelteKit", "AG Grid", "Financial", "Dashboard"],
 		slug: "losingalpha",
@@ -61,7 +84,7 @@ export const portfolioItems: PortfolioItem[] = [
 	},
 	{
 		title: "Taures Chess Engine",
-		description: "High-performance chess engine built in Rust, featuring advanced algorithms for position evaluation and move generation.",
+		description: "A 300x speedup story. I built a chess engine in Rust as a way to learn the language, and accidentally discovered how bitboards turn a 2-second search into 8 milliseconds. Now it plays a decent game too.",
 		image: "/images/Taures/chessBanner.jpeg",
 		tags: ["Rust", "Algorithms", "Game Theory"],
 		slug: "taures-chess",
@@ -69,7 +92,7 @@ export const portfolioItems: PortfolioItem[] = [
 	},
 	{
 		title: "ODE Composer",
-		description: "Best M.Eng. Thesis winner: Framework for ODE system identification using Sparse Bayesian Learning and Gaussian Processes for derivative estimation.",
+		description: "My award-winning M.Eng. thesis: a framework that discovers ODE systems from raw data using Sparse Bayesian Learning. Think of it as reverse-engineering nature's equations — given observations, find the math behind them.",
 		image: "/images/sbl/WideScreen_GP.jpg",
 		tags: ["Python", "Bayesian Learning", "Research"],
 		slug: "sparse-bayesian-learning",
@@ -77,7 +100,7 @@ export const portfolioItems: PortfolioItem[] = [
 	},
 	{
 		title: "Smart Baby Buggy",
-		description: "Engineering solution for visually impaired parents using LIDAR, ultrasound sensors, and haptic feedback to navigate urban environments safely.",
+		description: "How do visually impaired parents navigate London with a baby? I led a team that built a buggy with LIDAR, ultrasound, computer vision, and haptic feedback — turning a stroller into a mobility aid.",
 		image: "/images/babyBuggy/i_explain_stuff.png",
 		tags: ["LIDAR", "Machine Learning", "Accessibility"],
 		slug: "smart-baby-buggy",
@@ -85,7 +108,7 @@ export const portfolioItems: PortfolioItem[] = [
 	},
 	{
 		title: "Animal Inspired Robotics",
-		description: "Interactive simulation for BIOE97156. Target interception algorithms and real-world robot implementation with computer vision and obstacle avoidance.",
+		description: "A predator-prey simulation exploring how animals intercept moving targets. I built the simulation, then implemented the algorithms on a real robot with computer vision and obstacle avoidance.",
 		image: "/images/robotSimulation/banner_animal_robotics.jpeg",
 		tags: ["Python", "Computer Vision", "Robotics"],
 		slug: "animal-robotics",

@@ -13,6 +13,7 @@
 		{ label: 'About', href: '/#about' },
 		{ label: 'Portfolio', href: '/#portfolio' },
 		{ label: 'Writing', href: '/writing' },
+		{ label: 'Food', href: '/food' },
 		{ label: 'Contact', href: '/#contact' }
 	];
 	
