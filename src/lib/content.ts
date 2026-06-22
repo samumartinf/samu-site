@@ -37,6 +37,42 @@ export const recipes: Recipe[] = [
 		href: "/food/20250921",
 		category: "Dinner Party",
 		tags: ["French", "Duck", "Bistro", "Four Courses"]
+	},
+	{
+		title: "Birria Tacos",
+		description: "Slow-cooked beef tacos with roasted vegetables, chipotle consommé, and crispy corn tortillas. A Mexican classic made in the slow cooker.",
+		date: "2026-06-22",
+		slug: "birria-tacos",
+		href: "/food/birria-tacos",
+		category: "Mexican",
+		tags: ["Beef", "Slow Cooker", "Tacos", "Mexican"]
+	},
+	{
+		title: "Judías a la Vinagreta",
+		description: "A fresh Spanish bean salad with hard-boiled eggs, tuna, green olives, and a Dijon vinaigrette. Perfect summer dish, served cold or at room temperature.",
+		date: "2026-06-22",
+		slug: "judias-vinagreta",
+		href: "/food/judias-vinagreta",
+		category: "Salad",
+		tags: ["Spanish", "Beans", "Tuna", "Cold Dish", "Summer"]
+	},
+	{
+		title: "Fajitas de Pollo",
+		description: "Chicken thigh fajitas with caramelised onions and peppers, macerated in smoked paprika and cumin, finished with crispy chicken skin.",
+		date: "2026-06-22",
+		slug: "fajitas-pollo",
+		href: "/food/fajitas-pollo",
+		category: "Mexican",
+		tags: ["Chicken", "Fajitas", "Quick", "Crispy Skin"]
+	},
+	{
+		title: "Sopa de Pollo Tailandesa",
+		description: "A rich Thai chicken soup with lemongrass, ginger, coconut milk, and mushrooms. Brightened with lime and fish sauce, finished with fresh cilantro.",
+		date: "2026-06-22",
+		slug: "sopa-tailandesa",
+		href: "/food/sopa-tailandesa",
+		category: "Soup",
+		tags: ["Thai", "Chicken", "Coconut", "Soup", "Asian"]
 	}
 ];
 
