@@ -25,6 +25,7 @@ export interface Recipe {
 	href: string;
 	category: string;
 	tags: string[];
+	external?: boolean;
 }
 
 // Recipes — most recent first
@@ -43,36 +44,40 @@ export const recipes: Recipe[] = [
 		description: "Slow-cooked beef tacos with roasted vegetables, chipotle consommé, and crispy corn tortillas. A Mexican classic made in the slow cooker.",
 		date: "2026-06-22",
 		slug: "birria-tacos",
-		href: "/food/birria-tacos",
+		href: "https://alemonescolom99.github.io/PorkiRecetas/receta_birria.html",
 		category: "Mexican",
-		tags: ["Beef", "Slow Cooker", "Tacos", "Mexican"]
+		tags: ["Beef", "Slow Cooker", "Tacos", "Mexican"],
+		external: true
 	},
 	{
 		title: "Judías a la Vinagreta",
 		description: "A fresh Spanish bean salad with hard-boiled eggs, tuna, green olives, and a Dijon vinaigrette. Perfect summer dish, served cold or at room temperature.",
 		date: "2026-06-22",
 		slug: "judias-vinagreta",
-		href: "/food/judias-vinagreta",
+		href: "https://alemonescolom99.github.io/PorkiRecetas/judias-vinagreta.html",
 		category: "Salad",
-		tags: ["Spanish", "Beans", "Tuna", "Cold Dish", "Summer"]
+		tags: ["Spanish", "Beans", "Tuna", "Cold Dish", "Summer"],
+		external: true
 	},
 	{
 		title: "Fajitas de Pollo",
 		description: "Chicken thigh fajitas with caramelised onions and peppers, macerated in smoked paprika and cumin, finished with crispy chicken skin.",
 		date: "2026-06-22",
 		slug: "fajitas-pollo",
-		href: "/food/fajitas-pollo",
+		href: "https://alemonescolom99.github.io/PorkiRecetas/fajitas-pollo.html",
 		category: "Mexican",
-		tags: ["Chicken", "Fajitas", "Quick", "Crispy Skin"]
+		tags: ["Chicken", "Fajitas", "Quick", "Crispy Skin"],
+		external: true
 	},
 	{
 		title: "Sopa de Pollo Tailandesa",
 		description: "A rich Thai chicken soup with lemongrass, ginger, coconut milk, and mushrooms. Brightened with lime and fish sauce, finished with fresh cilantro.",
 		date: "2026-06-22",
 		slug: "sopa-tailandesa",
-		href: "/food/sopa-tailandesa",
+		href: "https://alemonescolom99.github.io/PorkiRecetas/sopa-tailandesa.html",
 		category: "Soup",
-		tags: ["Thai", "Chicken", "Coconut", "Soup", "Asian"]
+		tags: ["Thai", "Chicken", "Coconut", "Soup", "Asian"],
+		external: true
 	}
 ];
 

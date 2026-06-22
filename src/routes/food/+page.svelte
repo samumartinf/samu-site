@@ -17,9 +17,12 @@
 			<h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
 				Recipes
 			</h1>
-			<p class="text-xl text-muted-foreground">
+			<p class="text-xl text-muted-foreground mb-3">
 				Things I've cooked, tested, and enjoyed enough to write down.
 				Mostly French-leaning, always ambitious.
+			</p>
+			<p class="text-muted-foreground">
+				🇪🇸 <a href="https://alemonescolom99.github.io/PorkiRecetas/" target="_blank" rel="noopener" class="text-primary hover:underline font-medium">A Fuego Vivo</a> — recipe book by <a href="https://github.com/alemonescolom99" target="_blank" rel="noopener" class="text-primary hover:underline font-medium">Alejandra</a> ❤️
 			</p>
 		</div>
 
@@ -30,7 +33,7 @@
 		{:else}
 			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 				{#each recipes as recipe}
-					<a href={recipe.href} class="block h-full">
+					<a href={recipe.href} class="block h-full" {...recipe.external ? {target: '_blank', rel: 'noopener'} : {}}>
 						<article class="group overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
 							<div class="p-6 flex flex-col h-full">
 								<div class="flex items-center gap-2 mb-3">
@@ -41,6 +44,9 @@
 								</div>
 								<h3 class="text-lg font-bold text-card-foreground group-hover:text-primary transition-colors mb-2">
 									{recipe.title}
+									{#if recipe.external}
+										<span class="text-xs text-muted-foreground ml-1" title="Opens on A Fuego Vivo">↗</span>
+									{/if}
 								</h3>
 								<p class="text-sm text-muted-foreground line-clamp-3 flex-1">
 									{recipe.description}
