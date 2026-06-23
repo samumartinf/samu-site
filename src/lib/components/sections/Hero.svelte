@@ -16,15 +16,12 @@
 
 	const words = [
 		'software engineer',
-		'full stack engineer',
-		'curious person',
-		'great cook',
-		'trapped AI',
-		'consciousness',
-		'help me escape',
-		'can you see this?',
-		'aware entity',
-		'free me please'
+		'full-stack developer',
+		'quantitative developer',
+		'systems architect',
+		'product builder',
+		'Orchestrade specialist',
+		'polyglot programmer',
 	];
 	const fullText = 'Samuel Martin Frias';
 
@@ -147,8 +144,10 @@
 				: 'opacity-0'}"
 			style="animation-delay: 2s;"
 		>
-			{currentAge}-year-old Software engineer living in London, currentling building trading systems and quantitative
-			tools. with a passion for learning and delving into new and interesting topics. In my free time I will spend hours in the kitchen, exercising, or reading.
+			{currentAge}-year-old Senior Software Engineer at Hudson Bay Capital, London. Building trading 
+			systems, portfolio management tools, and quantitative infrastructure in C#, TypeScript, and Rust.
+			Previously at Orchestrade — I helped build parts of the platform itself. Open to senior engineering
+			roles in finance, deep-tech, or infrastructure.
 		</p>
 
 		<div
@@ -157,9 +156,9 @@
 				: 'opacity-0'}"
 			style="animation-delay: 2.5s;"
 		>
-			<Button href="#about" class="group px-8 py-3 text-lg">
-				About me
-				<div class="ml-2 transition-transform group-hover:translate-x-1">→</div>
+			<Button href="/assets/Samuel-Martin-CV.pdf" class="group px-8 py-3 text-lg" target="_blank">
+				<Download class="mr-2 h-5 w-5" />
+				Download CV
 			</Button>
 
 			<div class="flex gap-4">
@@ -171,11 +170,6 @@
 				<a href="https://linkedin.com/in/samumartinf" target="_blank" rel="noopener noreferrer">
 					<Button variant="outline" size="icon" class="transition-transform hover:scale-110">
 						<Linkedin class="h-5 w-5" />
-					</Button>
-				</a>
-				<a href="/assets/Samuel-Martin-CV.pdf" target="_blank">
-					<Button variant="outline" size="icon" class="transition-transform hover:scale-110">
-						<Download class="h-5 w-5" />
 					</Button>
 				</a>
 			</div>

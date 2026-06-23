@@ -7,8 +7,8 @@
 </script>
 
 <svelte:head>
-	<title>Samuel Martin Frias - Engineer & Innovator</title>
-	<meta name="description" content="Samuel Martin Frias - Senior Software Engineer in London building trading systems and quantitative tools. I love diving deep into new domains—from Orchestrade integrations to full-stack applications." />
+	<title>Samuel Martin Frias — Senior Software Engineer, London</title>
+	<meta name="description" content="Samuel Martin Frias — Senior Software Engineer at Hudson Bay Capital, London. Building trading systems, portfolio management tools, and quantitative infrastructure. Open to senior engineering roles." />
 </svelte:head>
 
 <main class="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
